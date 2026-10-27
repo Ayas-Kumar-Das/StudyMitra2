@@ -1,0 +1,79 @@
+# Environment and secrets
+.env
+.env.local
+.env.*.local
+*.env
+
+# Python / Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+.venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# Data and dynamic runtime stores
+data/
+uploads/
+*.db
+*.sqlite
+*.sqlite3
+
+# Model caches (HuggingFace / sentence-transformers)
+.cache/
+models/
+
+# Logs and temporary files
+*.log
+logs/
+tmp/
+temp/
+
+# Testing and coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+# IDE & Editor specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Docker runtime volumes / persistent data mount outputs
+qdrant_storage/
+qdrant_snapshots/
