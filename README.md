@@ -1,15 +1,31 @@
 # 📚 StudyMitra — Personal Academic RAG Knowledge Engine
 
-## Run the redesigned React frontend
+## ⚡ Quick Start Options
 
-```powershell
-cd frontend
-npm ci
-npm run dev -- --port 3000
+### Option A: Run with Docker Compose (Full Stack)
+
+Start all services (React Frontend on Nginx, FastAPI Backend, Qdrant Vector DB):
+
+```bash
+docker compose up --build
 ```
 
-Open http://127.0.0.1:3000. The frontend runs independently in local-preview mode. Files stay in this browser; real AI answers require the backend. See [frontend setup and backend connection instructions](frontend/README.md). The original backend is preserved; its full-stack setup is described below.
+- **Frontend:** [http://localhost:3000](http://localhost:3000)
+- **Backend API Docs:** [http://localhost:8000/docs](http://localhost:8000/docs)
+- **Health Check:** [http://localhost:8000/api/health](http://localhost:8000/api/health)
+- **Qdrant Dashboard:** [http://localhost:6333/dashboard](http://localhost:6333/dashboard)
 
+### Option B: Local Frontend Development (React + Vite)
+
+If you are developing the frontend locally while the backend is running:
+
+```bash
+cd frontend
+npm ci
+npm run dev
+```
+
+Open [http://127.0.0.1:3001](http://127.0.0.1:3001). Vite proxies `/api` requests to `http://127.0.0.1:8000`. If your backend is at a different location, specify `API_PROXY_TARGET="http://backend-host:8000" npm run dev`.
 
 A self-hosted study assistant that lets you upload and query your own academic resources — PDFs, lecture notes, textbooks, research papers, and previous-year questions — with grounded, cited answers powered by a modular RAG pipeline.
 
@@ -38,15 +54,15 @@ A self-hosted study assistant that lets you upload and query your own academic r
 ## 🏗 Architecture
 
 ```
-┌─────────────┐     ┌──────────────────────────────────────────┐     ┌─────────┐
-│   Frontend   │────▶│             FastAPI Backend              │────▶│  Qdrant  │
-│  (Nginx SPA) │     │                                          │     │ (Vectors)│
-└─────────────┘     │  ┌──────────┐ ┌──────────┐ ┌──────────┐ │     └─────────┘
-                     │  │Ingestion │ │Retrieval │ │Generation│ │
-                     │  │Pipeline  │ │Pipeline  │ │Pipeline  │ │     ┌─────────┐
-                     │  └──────────┘ └──────────┘ └──────────┘ │────▶│ SQLite  │
-                     │                                          │     │(Metadata)│
-                     └──────────────────────────────────────────┘     └─────────┘
+┌────────────────────────┐     ┌──────────────────────────────────────────┐     ┌─────────┐
+│     React Frontend     │────▶│             FastAPI Backend              │────▶│  Qdrant  │
+│ (Vite / Nginx in Docker│     │                                          │     │ (Vectors)│
+└────────────────────────┘     │  ┌──────────┐ ┌──────────┐ ┌──────────┐ │     └─────────┘
+                               │  │Ingestion │ │Retrieval │ │Generation│ │
+                               │  │Pipeline  │ │Pipeline  │ │Pipeline  │ │     ┌─────────┐
+                               │  └──────────┘ └──────────┘ └──────────┘ │────▶│ SQLite  │
+                               │                                          │     │(Metadata)│
+                               └──────────────────────────────────────────┘     └─────────┘
 ```
 
 | Layer | Components |
@@ -138,11 +154,20 @@ StudyMitra/
 │       ├── db/                  # SQLite database
 │       └── utils/               # Logging, file utilities
 └── frontend/
-    ├── Dockerfile
-    ├── nginx.conf
-    ├── index.html
-    ├── css/styles.css
-    └── js/                      # Vanilla JS SPA
+    ├── Dockerfile               # Multi-stage: Node build -> Nginx static serving
+    ├── nginx.conf               # Production reverse proxy & SPA routing
+    ├── package.json             # React 19, Vite, Phosphor Icons, Manrope
+    ├── vite.config.js           # Vite dev server with /api proxy & code splitting
+    ├── index.html               # React mount root
+    ├── public/                  # Static assets
+    ├── src/
+    │   ├── main.jsx             # React application entry
+    │   ├── App.jsx              # Main workspace, navigation, chat, library
+    │   ├── components/          # Accessible dialogs & shared controls
+    │   ├── features/            # Library, upload modals, composer
+    │   ├── lib/                 # API/SSE streaming client, validation, study modes
+    │   └── styles/              # Design tokens, themes, typography
+    └── tests/                   # Stream parser & unit tests
 ```
 
 ---

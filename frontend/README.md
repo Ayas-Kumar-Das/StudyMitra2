@@ -6,12 +6,12 @@ React + Vite, Manrope, Phosphor icons. Backend source is unchanged.
 
 From this folder:
 
-```powershell
+```bash
 npm ci
-npm run dev -- --port 3000
+npm run dev
 ```
 
-Open http://127.0.0.1:3000. Default `npm run dev` uses port 3001 so it can coexist with the original Docker frontend on 3000.
+Open [http://127.0.0.1:3001](http://127.0.0.1:3001). Default `npm run dev` uses port 3001 so it can coexist with the Docker Compose frontend running on port 3000. If you wish to run on port 3000, specify `npm run dev -- --port 3000`.
 
 ## Frontend-only mode
 

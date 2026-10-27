@@ -86,5 +86,6 @@ app.add_middleware(
 
 # Register routes
 app.include_router(health.router, prefix="/api")
+app.include_router(health.router)  # Also expose /health for root health checks
 app.include_router(documents.router, prefix="/api")
 app.include_router(chat.router, prefix="/api")
