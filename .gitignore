@@ -16,7 +16,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+/lib/
 lib64/
 parts/
 sdist/
@@ -77,3 +77,16 @@ htmlcov/
 # Docker runtime volumes / persistent data mount outputs
 qdrant_storage/
 qdrant_snapshots/
+# Frontend tooling
+node_modules/
+frontend/dist/
+frontend/test-results/
+frontend/playwright-report/
+# Local agent tooling and design review output
+.agent/
+.agents/
+.claude/
+.codex/
+.gemini/
+.impeccable/*
+!.impeccable/design.json

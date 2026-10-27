@@ -1,0 +1,167 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-27T14:47:59.6638409Z",
+  "title": "Design System: StudyMitra",
+  "extensions": {
+    "colorMeta": {
+      "accent": {
+        "role": "primary",
+        "displayName": "Study Blue",
+        "tonalRamp": [
+          "#1d3ea4",
+          "#315dec",
+          "#447cf2",
+          "#5aa4f0",
+          "#8fcff6",
+          "#d8ecff"
+        ]
+      },
+      "bg": {
+        "role": "neutral",
+        "displayName": "Cool Paper"
+      },
+      "text": {
+        "role": "neutral",
+        "displayName": "Blue Ink"
+      },
+      "dark-blue-1": {
+        "role": "primary",
+        "displayName": "Blue-hour Gradient",
+        "tonalRamp": [
+          "#14295d",
+          "#1e3d8c",
+          "#2851a7",
+          "#3468b7",
+          "#508ecc",
+          "#7eb2df"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "headline": {
+        "displayName": "Workspace heading",
+        "purpose": "Primary page title, responsive from 29px to 23px."
+      },
+      "body": {
+        "displayName": "Answer prose",
+        "purpose": "Long-form answers with 74ch maximum width."
+      }
+    },
+    "shadows": [
+      {
+        "name": "composer",
+        "value": "0 5px 20px #24437406",
+        "purpose": "Quiet resting depth around the question field."
+      },
+      {
+        "name": "composer-focus",
+        "value": "0 5px 25px #315dec12",
+        "purpose": "Emphasizes the active question field."
+      },
+      {
+        "name": "primary-hover",
+        "value": "0 5px 15px #315dec25",
+        "purpose": "Feedback on primary actions."
+      },
+      {
+        "name": "toast",
+        "value": "0 8px 32px #10203a25",
+        "purpose": "Separates transient status from the workspace."
+      }
+    ],
+    "motion": [
+      {
+        "name": "control",
+        "value": ".18s ease",
+        "purpose": "Background, color, shadow and transform feedback."
+      },
+      {
+        "name": "paper-stack",
+        "value": ".3s cubic-bezier(.16,1,.3,1)",
+        "purpose": "Small upload illustration lift."
+      },
+      {
+        "name": "quiet-mode",
+        "value": "none",
+        "purpose": "Focus mode and reduced-motion disable animation and transitions, with automatic scrolling."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "wide-min",
+        "value": "1500px"
+      },
+      {
+        "name": "compact-max",
+        "value": "1150px"
+      },
+      {
+        "name": "rail-max",
+        "value": "900px"
+      },
+      {
+        "name": "mobile-max",
+        "value": "650px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Compact action used to add and save study materials.",
+      "html": "<button class=\"study-primary\">Add materials</button>",
+      "css": ".study-primary{font-family:'Manrope Variable',sans-serif;font-size:12px;font-weight:750;display:inline-flex;align-items:center;justify-content:center;padding:11px 15px;border:0;border-radius:8px;background:var(--accent,#315dec);color:#fff;cursor:pointer;transition:background .18s ease,box-shadow .18s ease}.study-primary:hover{background:var(--accent-hover,#244bd0);box-shadow:0 5px 15px #315dec25}.study-primary:focus-visible{outline:3px solid #739af5;outline-offset:3px}@media(prefers-reduced-motion:reduce){.study-primary{transition:none}}:host-context([data-theme=dark]) .study-primary{color:#102141}:host-context([data-focus=true]) .study-primary{transition:none}"
+    },
+    {
+      "name": "Document card",
+      "kind": "card",
+      "refersTo": "document-card",
+      "description": "Bordered library item with metadata and a separate document action.",
+      "html": "<article class=\"study-doc\"><span class=\"study-type\">PDF</span><h3>Operating Systems — Unit 3</h3><p>Lecture notes · Semester 4</p><button>View document →</button></article>",
+      "css": ".study-doc{font-family:'Manrope Variable',sans-serif;background:var(--surface,#fff);color:var(--text,#172b50);border:1px solid var(--line,#dfe7f4);border-radius:13px;padding:19px;max-width:320px}.study-type{font-size:9px;font-weight:800;color:var(--muted,#62718a)}.study-doc h3{font-size:14px;font-weight:800;line-height:1.5;margin:18px 0 7px}.study-doc p{font-size:11px;color:var(--muted,#62718a);margin:0 0 14px}.study-doc button{font:650 11px 'Manrope Variable',sans-serif;border:0;border-top:1px solid var(--line,#dfe7f4);background:none;color:var(--accent,#315dec);padding:10px 0 0;cursor:pointer}.study-doc button:hover{text-decoration:underline;text-underline-offset:4px}.study-doc button:focus-visible{outline:3px solid #739af5;outline-offset:3px}"
+    },
+    {
+      "name": "Upload field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Persistent label above a document metadata field.",
+      "html": "<label class=\"study-field\">Document title<input placeholder=\"e.g. Operating Systems — Unit 3\"></label>",
+      "css": ".study-field{display:flex;flex-direction:column;gap:7px;font:700 12px 'Manrope Variable',sans-serif;color:var(--text,#172b50);max-width:340px}.study-field input{font:400 12px 'Manrope Variable',sans-serif;padding:10px;border:1px solid var(--line,#dfe7f4);border-radius:7px;background:var(--bg,#f3f6fc);color:var(--text,#172b50);caret-color:var(--accent,#315dec)}.study-field input::placeholder{color:var(--muted,#62718a)}.study-field input:hover{border-color:var(--line,#dfe7f4)}.study-field input:focus-visible{outline:3px solid #739af5;outline-offset:3px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Blue-hour study desk",
+    "overview": "An orderly study workspace with the warmth of a helpful classmate. Pale blue paper, dark ink, rounded controls, Phosphor icons and a luminous blue upload card make personal materials approachable.\n\nFocus mode uses direct language, fewer decorative elements and a tonal upload card. Light and dark themes preserve spatial hierarchy. The dark upload gradient uses the six theme-specific blue variables; focus mode uses surface-2 in both themes.",
+    "keyCharacteristics": [
+      "Five-to-six-color blue family gradient",
+      "Quiet surfaces with strong ink and fine borders",
+      "Friendly language with a direct focus mode",
+      "Phosphor icon family"
+    ],
+    "rules": [
+      {
+        "name": "The Readable Blue Rule",
+        "body": "Keep running text on solid semantic surfaces; protect upload labels from bright gradient stops.",
+        "section": "colors"
+      },
+      {
+        "name": "The Quiet Desk Rule",
+        "body": "Use tone and borders for everyday cards, with stronger depth reserved for overlays and the paper illustration.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do use semantic colors in both themes.",
+      "Do preserve visible focus and readable answer width.",
+      "Do keep decorative personality removable in focus mode."
+    ],
+    "donts": [
+      "Don't replace the blue family with unrelated decorative accents.",
+      "Don't use the gradient as a general reading surface.",
+      "Don't remove study features in focus mode.",
+      "Don't rely on motion or color alone for essential state."
+    ]
+  }
+}

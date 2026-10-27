@@ -1,5 +1,16 @@
 # 📚 StudyMitra — Personal Academic RAG Knowledge Engine
 
+## Run the redesigned React frontend
+
+```powershell
+cd frontend
+npm ci
+npm run dev -- --port 3000
+```
+
+Open http://127.0.0.1:3000. The frontend runs independently in local-preview mode. Files stay in this browser; real AI answers require the backend. See [frontend setup and backend connection instructions](frontend/README.md). The original backend is preserved; its full-stack setup is described below.
+
+
 A self-hosted study assistant that lets you upload and query your own academic resources — PDFs, lecture notes, textbooks, research papers, and previous-year questions — with grounded, cited answers powered by a modular RAG pipeline.
 
 ![License](https://img.shields.io/badge/license-MIT-blue)
