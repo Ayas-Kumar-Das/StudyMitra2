@@ -1,4 +1,4 @@
-import { BookOpen, Chats, Books, Plus, Clock } from "@phosphor-icons/react";
+import { Chats, Books, Plus, Clock } from "@phosphor-icons/react";
 export default function Navigation({
   page,
   navigate,
@@ -16,19 +16,6 @@ export default function Navigation({
       className={"sidebar glass-panel" + (focus ? " is-collapsed" : "")}
       aria-label="Workspace navigation"
     >
-      <a
-        className="brand"
-        href="#chat"
-        onClick={() => navigate("chat")}
-        aria-label="StudyMitra study space"
-      >
-        <span className="brand-mark">
-          <BookOpen size={24} weight="bold" />
-        </span>
-        <span className="nav-label">
-          StudyMitra<span className="brand-dot">.</span>
-        </span>
-      </a>
       <button
         className="new-chat"
         aria-label="New study chat"

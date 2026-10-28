@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-28T07:40:50.516071+00:00",
+  "generatedAt": "2026-10-28T08:57:35.340957+00:00",
   "title": "Design System: StudyMitra",
   "extensions": {
     "colorMeta": {
@@ -40,7 +40,7 @@
     "typographyMeta": {
       "headline": {
         "displayName": "Workspace heading",
-        "purpose": "Primary page title: 25px default, 29px wide; responsive compact sizes."
+        "purpose": "Centered masthead title: 28px desktop, 24px compact, 20px mobile before short-height overrides."
       },
       "body": {
         "displayName": "Answer prose",
@@ -99,6 +99,16 @@
         "name": "workspace-arrive",
         "value": ".36s cubic-bezier(.16,1,.3,1)",
         "purpose": "Whole-workspace arrival from 3px blur and 1.006 scale. Reduced motion updates directly."
+      },
+      {
+        "name": "mode-indicator",
+        "value": ".34s cubic-bezier(.22,1,.36,1)",
+        "purpose": "Single measured selection position/width; disabled for reduced motion."
+      },
+      {
+        "name": "composer-height",
+        "value": ".24s cubic-bezier(.16,1,.3,1)",
+        "purpose": "Expand/shrink writing area; disabled for reduced motion."
       }
     ],
     "breakpoints": [
@@ -170,53 +180,52 @@
       "css": ".study-field{display:flex;flex-direction:column;gap:7px;font:700 12px 'Manrope Variable',sans-serif;color:var(--text,#172b50);max-width:340px}.study-field input{font:400 12px 'Manrope Variable',sans-serif;padding:10px;border:1px solid var(--line,#dfe7f4);border-radius:7px;background:var(--bg,#f3f6fc);color:var(--text,#172b50);caret-color:var(--accent,#315dec)}.study-field input::placeholder{color:var(--muted,#425b7b)}.study-field input:hover{border-color:var(--line,#dfe7f4)}.study-field input:focus-visible{outline:3px solid #739af5;outline-offset:3px}"
     },
     {
-      "name": "Floating workspace bar",
-      "kind": "custom",
-      "description": "Thin glass topbar with focus left and theme right; no breadcrumb.",
-      "html": "<header class=\"workspace-demo\"><button aria-pressed=\"false\">◎ Focus mode</button><button aria-label=\"Switch theme\">◐</button></header>",
-      "css": ".workspace-demo{font-family:'Manrope Variable',sans-serif;color:var(--text,#172b50);background:linear-gradient(135deg,var(--glass-highlight,rgba(255,255,255,.44)),transparent 65%),var(--glass,rgba(244,250,255,.28));border:1px solid var(--glass-edge,rgba(255,255,255,.74));box-shadow:inset 0 1px 0 #ffffff70,var(--glass-depth,0 14px 34px #294e8921);backdrop-filter:blur(24px) saturate(140%);height:46px;border-radius:30px;padding:0 12px 0 17px;display:flex;align-items:center;justify-content:space-between;gap:16px}.workspace-demo button{font:650 12px Manrope,sans-serif;color:inherit;background:none;border:0;padding:6px;cursor:pointer}.workspace-demo button:hover{color:var(--accent,#315dec)}.workspace-demo button:focus-visible{outline:3px solid #739af5;outline-offset:3px}",
-      "refersTo": "workspace-topbar"
-    },
-    {
       "name": "Floating navigation",
       "kind": "nav",
-      "description": "Vertically centered floating glass sidebar; focus mode collapses the desktop panel to an icon rail.",
+      "description": "Centered 70dvh expanded navigation; focused rail uses compact automatic height.",
       "html": "<nav class=\"nav-demo\" aria-label=\"Workspace\"><button aria-current=\"page\">Study space</button><button>My library</button></nav>",
-      "css": ".nav-demo{font-family:'Manrope Variable',sans-serif;color:var(--text,#172b50);background:linear-gradient(135deg,var(--glass-highlight,rgba(255,255,255,.44)),transparent 65%),var(--glass,rgba(244,250,255,.28));border:1px solid var(--glass-edge,rgba(255,255,255,.74));box-shadow:inset 0 1px 0 #ffffff70,var(--glass-depth,0 14px 34px #294e8921);backdrop-filter:blur(24px) saturate(140%);width:196px;padding:20px 14px;border-radius:30px;display:grid;gap:6px}.nav-demo button{font:700 13px Manrope,sans-serif;color:var(--muted,#425b7b);border:0;background:none;border-radius:14px;min-height:44px;padding:12px;text-align:left;cursor:pointer;transition:transform .18s}.nav-demo button[aria-current]{color:var(--accent,#315dec);background:var(--selected,#e8efff);box-shadow:inset 0 1px 0 #ffffff80,0 3px 9px #23477608}.nav-demo button:hover{background:var(--selected,#e8efff);transform:translateX(2px)}.nav-demo button:focus-visible{outline:3px solid #739af5;outline-offset:3px}@media(prefers-reduced-motion:reduce){.nav-demo button{transition:none;transform:none}}",
+      "css": ".nav-demo{font-family:'Manrope Variable',sans-serif;color:var(--text,#172b50);background:linear-gradient(135deg,var(--glass-highlight,rgba(255,255,255,.44)),transparent 65%),var(--glass,rgba(244,250,255,.28));border:1px solid var(--glass-edge,rgba(255,255,255,.74));box-shadow:inset 0 1px 0 #ffffff70,var(--glass-depth,0 14px 34px #294e8921);backdrop-filter:blur(24px) saturate(140%);width:196px;padding:26px 14px;height:70dvh;max-height:70dvh;align-self:center;border-radius:30px;display:grid;gap:6px}.nav-demo button{font:700 13px Manrope,sans-serif;color:var(--muted,#425b7b);border:0;background:none;border-radius:14px;min-height:44px;padding:12px;text-align:left;cursor:pointer;transition:transform .18s}.nav-demo button[aria-current]{color:var(--accent,#315dec);background:var(--selected,#e8efff);box-shadow:inset 0 1px 0 #ffffff80,0 3px 9px #23477608}.nav-demo button:hover{background:var(--selected,#e8efff);transform:translateX(2px)}.nav-demo button:focus-visible{outline:3px solid #739af5;outline-offset:3px}@media(prefers-reduced-motion:reduce){.nav-demo button{transition:none;transform:none}}",
       "refersTo": "workspace-navigation"
     },
     {
       "name": "Study modes",
       "kind": "nav",
-      "description": "Glass pill with selected answer mode and keyboard focus.",
-      "html": "<div class=\"mode-demo\" role=\"group\" aria-label=\"Answer mode\"><button aria-pressed=\"true\">Explain</button><button aria-pressed=\"false\">Summarize</button><button aria-pressed=\"false\">Quiz</button></div>",
-      "css": ".mode-demo{font-family:'Manrope Variable',sans-serif;color:var(--text,#172b50);display:flex;gap:2px;padding:4px;border-radius:24px;background:linear-gradient(135deg,var(--glass-highlight,rgba(255,255,255,.44)),transparent 75%),var(--glass,rgba(244,250,255,.28));border:1px solid var(--glass-edge,#fff);backdrop-filter:blur(22px) saturate(165%)}.mode-demo button{font:700 11px Manrope,sans-serif;padding:10px 8px;border:0;border-radius:20px;background:none;color:var(--muted,#425b7b);cursor:pointer;transition:transform .2s,background .2s}.mode-demo button[aria-pressed=true]{background:linear-gradient(135deg,var(--surface,#fff),var(--selected,#e8efff));color:var(--accent,#315dec);box-shadow:inset 0 1px 0 #ffffffab,0 2px 8px #254c8a12}.mode-demo button:hover{transform:translateY(-1px)}.mode-demo button:active{transform:scale(.96)}.mode-demo button:focus-visible{outline:3px solid #739af5;outline-offset:3px}@media(prefers-reduced-motion:reduce){.mode-demo button{transition:none;transform:none}}",
+      "description": "One measured glass indicator slides behind the selected button; static example shows its selected position.",
+      "html": "<div class=\"mode-demo\" role=\"group\" aria-label=\"Answer mode\"><span class=\"selection\" aria-hidden=\"true\"></span><button aria-pressed=\"true\">Explain</button><button aria-pressed=\"false\">Summarize</button><button aria-pressed=\"false\">Quiz</button></div>",
+      "css": ".mode-demo{position:relative;display:flex;gap:2px;padding:4px;border-radius:24px;background:var(--glass,rgba(244,250,255,.28));border:1px solid var(--glass-edge,#fff);backdrop-filter:blur(22px) saturate(165%)}.mode-demo .selection{position:absolute;left:4px;top:4px;bottom:4px;width:64px;border-radius:22px;background:linear-gradient(135deg,rgba(255,255,255,.72),rgba(233,243,255,.32));border:1px solid rgba(255,255,255,.82);box-shadow:inset 0 1px 1px #fff,0 3px 10px #31538a12;transition:transform .34s cubic-bezier(.22,1,.36,1),width .34s cubic-bezier(.22,1,.36,1)}.mode-demo button{position:relative;font:700 11px Manrope,sans-serif;padding:10px 8px;border:0;border-radius:20px;background:none;color:var(--muted,#425b7b);cursor:pointer}.mode-demo button[aria-pressed=true]{color:var(--accent,#315dec)}.mode-demo button:hover{color:var(--accent,#315dec);background:#ffffff1f}.mode-demo button:focus-visible{outline:3px solid #739af5;outline-offset:3px}:host-context([data-theme=dark]) .selection{background:linear-gradient(135deg,rgba(160,197,255,.22),rgba(144,181,242,.08));border-color:rgba(189,216,255,.32);box-shadow:inset 0 1px 1px #ffffff45,0 4px 12px #040c2526}@media(prefers-reduced-motion:reduce){.mode-demo .selection{transition:none}}",
       "refersTo": "study-modes"
     },
     {
       "name": "Glass starter tool",
       "kind": "card",
-      "description": "Reflected translucent starter with spacious desktop type and compact responsive overrides.",
+      "description": "Near-square desktop starter tile; responsive compact mobile geometry remains.",
       "html": "<button class=\"glass-tool\"><strong>Make it make sense</strong><span>Understand concepts step by step.</span></button>",
-      "css": ".glass-tool{font-family:Manrope,sans-serif;text-align:left;display:flex;flex-direction:column;gap:7px;padding:21px 23px;border:1px solid var(--glass-edge,rgba(255,255,255,.74));border-radius:16px;background:linear-gradient(135deg,var(--glass-highlight,rgba(255,255,255,.44)),transparent 75%),var(--glass-card,rgba(249,252,255,.34));backdrop-filter:blur(20px) saturate(150%);box-shadow:inset 0 1px 0 #ffffff60,0 8px 22px #244b8110;color:var(--text,#172b50);cursor:pointer;transition:transform .18s,box-shadow .18s}.glass-tool strong{font-size:15px;line-height:1.4}.glass-tool span{font-size:12px;line-height:1.65;color:var(--muted,#425b7b);max-width:34ch}.glass-tool:hover{transform:translateY(-2px);box-shadow:inset 0 1px 0 #ffffff90,0 12px 28px #244b8121}.glass-tool:focus-visible{outline:3px solid #739af5;outline-offset:3px}@media(prefers-reduced-motion:reduce){.glass-tool{transition:none;transform:none}}"
+      "css": ".glass-tool{font-family:Manrope,sans-serif;text-align:left;display:flex;flex-direction:column;gap:7px;padding:24px;border:1px solid var(--glass-edge,rgba(255,255,255,.74));border-radius:20px;background:linear-gradient(135deg,var(--glass-highlight,rgba(255,255,255,.44)),transparent 75%),var(--glass-card,rgba(249,252,255,.34));backdrop-filter:blur(20px) saturate(150%);box-shadow:inset 0 1px 0 #ffffff60,0 8px 22px #244b8110;color:var(--text,#172b50);cursor:pointer;transition:transform .18s,box-shadow .18s}.glass-tool strong{font-size:16px;line-height:1.4}.glass-tool span{font-size:12px;line-height:1.65;color:var(--muted,#425b7b);max-width:34ch}.glass-tool:hover{transform:translateY(-2px);box-shadow:inset 0 1px 0 #ffffff90,0 12px 28px #244b8121}.glass-tool:focus-visible{outline:3px solid #739af5;outline-offset:3px}@media(prefers-reduced-motion:reduce){.glass-tool{transition:none;transform:none}}"
     },
     {
       "name": "Glass composer",
       "kind": "input",
-      "description": "Anchored question surface with translucent fill and internal field scrolling.",
-      "html": "<div class=\"glass-composer\"><textarea aria-label=\"Ask a study question\" placeholder=\"Ask about your documents…\"></textarea></div>",
-      "css": ".glass-composer{padding:12px 15px 10px;border:1px solid #cbd8ef;border-radius:18px;background:color-mix(in srgb,var(--surface,#fff) 62%,transparent);backdrop-filter:blur(22px) saturate(145%);box-shadow:inset 0 1px 0 #ffffff70,0 8px 26px #2443740d}.glass-composer textarea{font:13px/1.6 Manrope,sans-serif;width:100%;height:33px;max-height:80px;resize:none;overflow:auto;border:0;outline:0;background:none;color:var(--text,#172b50)}.glass-composer textarea::placeholder{color:var(--muted,#425b7b)}.glass-composer:focus-within{border-color:var(--accent,#315dec);box-shadow:0 5px 25px #315dec12}.glass-composer:hover{border-color:var(--accent,#315dec)}"
+      "description": "Anchored writing surface with labelled Expand/Shrink control; live React state toggles expanded height.",
+      "html": "<div class=\"glass-composer\"><textarea aria-label=\"Ask a study question\" placeholder=\"Ask about your documents…\"></textarea><button type=\"button\" aria-pressed=\"false\" aria-label=\"Expand message box\">Expand</button></div>",
+      "css": ".glass-composer{padding:12px 15px 10px;border:1px solid #cbd8ef;border-radius:18px;background:color-mix(in srgb,var(--surface,#fff) 62%,transparent);backdrop-filter:blur(22px) saturate(145%);box-shadow:inset 0 1px 0 #ffffff70,0 8px 26px #2443740d}.glass-composer textarea{font:13px/1.6 Manrope,sans-serif;width:100%;height:33px;max-height:80px;resize:none;overflow:auto;border:0;outline:0;background:none;color:var(--text,#172b50)}.glass-composer textarea::placeholder{color:var(--muted,#425b7b)}.glass-composer:focus-within{border-color:var(--accent,#315dec);box-shadow:0 5px 25px #315dec12}.glass-composer:hover{border-color:var(--accent,#315dec)}.glass-composer button{font:12px Manrope,sans-serif;background:none;border:0;color:var(--muted,#425b7b);padding:6px;cursor:pointer}.glass-composer button:hover{background:var(--selected,#e8efff)}.glass-composer button:focus-visible{outline:3px solid #739af5;outline-offset:3px}.glass-composer textarea{transition:height .24s cubic-bezier(.16,1,.3,1)}.glass-composer.is-expanded textarea{height:clamp(70px,16dvh,150px);min-height:70px;max-height:150px}@media(prefers-reduced-motion:reduce){.glass-composer textarea{transition:none}}"
+    },
+    {
+      "name": "Compact masthead",
+      "kind": "custom",
+      "description": "Independent focus pill and theme circle flank a centered heading; branding sits separately on the backdrop.",
+      "html": "<header class=\"masthead-demo\"><button class=\"focus\" aria-pressed=\"false\">Focus mode</button><div><h1>Big questions. Clear answers.</h1><p>Your notes, untangled.</p></div><button class=\"theme\" aria-label=\"Switch theme\">◐</button></header>",
+      "css": ".masthead-demo{font-family:Manrope,sans-serif;display:grid;grid-template-columns:minmax(145px,1fr) auto minmax(44px,1fr);align-items:center;gap:16px;height:76px;color:var(--text,#172b50)}.masthead-demo div{text-align:center}.masthead-demo h1{font-size:28px;line-height:1.3;letter-spacing:-.035em;margin:0}.masthead-demo p{font-size:12px;line-height:1.5;margin:6px 0 0;color:var(--muted,#425b7b)}.masthead-demo button{font:650 12px Manrope,sans-serif;background:linear-gradient(135deg,var(--glass-highlight,#ffffff70),transparent 65%),var(--glass,rgba(244,250,255,.28));border:1px solid var(--glass-edge,#ffffffbd);color:inherit;backdrop-filter:blur(24px) saturate(140%);cursor:pointer}.masthead-demo .focus{justify-self:start;min-height:42px;padding:10px 14px;border-radius:24px}.masthead-demo .theme{justify-self:end;width:43px;height:43px;border-radius:50%}.masthead-demo button:hover{background-color:var(--glass-highlight,#ffffff70);transform:translateY(-1px)}.masthead-demo button:focus-visible{outline:3px solid #739af5;outline-offset:3px}"
     }
   ],
   "narrative": {
     "northStar": "Blue-hour study desk",
-    "overview": "An orderly study workspace with the warmth of a helpful classmate. Pale blue paper, dark ink, rounded controls, Phosphor icons and a luminous blue upload card make personal materials approachable.\n\nFocus mode uses direct language, fewer decorative elements and a tonal upload card. Light and dark themes preserve spatial hierarchy. The dark upload gradient uses the six theme-specific blue variables; focus mode uses surface-2 in both themes. Floating glass navigation collapses in focus mode and becomes a bottom pill on mobile. The viewport owns chat geometry; library folders preserve raw metadata. Desktop navigation centers vertically in expanded and focus states. Translucent glass and reflection layers reveal stronger blue backdrop fields; spacious desktop headings and starter cards gain room while mobile and short-height compaction remain.",
+    "overview": "Blue-hour study desk: floating translucent navigation centers vertically, expanded to 70dvh while focus retains a compact rail. Existing Manrope branding and Phosphor BookOpen sit separately on the gradient backdrop. Independent focus and theme controls flank the centered full heading; no long topbar. Taller desktop starter tiles accompany the anchored expandable composer. A single measured glass indicator selects modes in both themes. Compact mobile and short-height layouts remain; offline truth stays visible in the composer and uploads remain in the library.",
     "keyCharacteristics": [
       "Five-to-six-color blue family gradient",
       "Quiet surfaces with strong ink and fine borders",
       "Friendly language with a direct focus mode",
       "Phosphor icon family",
-      "Floating glass shell with a thin focus-left bar",
+      "Separate upper-left brand, focus pill, centered heading and theme circle",
       "Viewport-anchored composer and independently scrolling conversation",
       "Semester, subject, category and document library hierarchy"
     ],

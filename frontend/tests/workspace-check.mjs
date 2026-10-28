@@ -109,12 +109,10 @@ await page.route("**/api/**", (route) => {
   return route.fulfill({ json: { status: "success" } });
 });
 await page.goto("http://127.0.0.1:3000");
-await page
-  .getByRole("button", { name: "Backend connected. Refresh connection" })
-  .waitFor();
+await page.locator(".composer-foot .status-dot.online").waitFor();
 const capture = async (name) => {
   await page.waitForTimeout(450);
-  await page.screenshot({ path: `../.impeccable/review/${name}.png` });
+  await page.screenshot({ path: `../.impeccable/review/revision-${name}.png` });
 };
 const bounds = async () =>
   page.evaluate(() => {
@@ -170,6 +168,20 @@ for (const [width, height, name] of [
   );
 }
 await page.setViewportSize({ width: 1440, height: 900 });
+const initialComposer=await page.locator('.composer').boundingBox();
+await page.getByRole('button',{name:'Expand message box'}).click();
+await page.waitForTimeout(300);
+assert.ok((await page.locator('.composer').boundingBox()).height>initialComposer.height+40);
+await page.getByRole('button',{name:'Shrink message box'}).click();
+await page.waitForTimeout(300);
+assert.equal(await page.getByRole('button',{name:'Add materials',exact:true}).count(),0,'no redundant upload button in chat header');
+const startTransform=await page.locator('.mode-indicator').evaluate(e=>getComputedStyle(e).transform);
+await page.getByRole('button',{name:'Compare',exact:true}).click();
+await page.waitForTimeout(400);
+const endTransform=await page.locator('.mode-indicator').evaluate(e=>getComputedStyle(e).transform);
+assert.notEqual(startTransform,endTransform,'one selection pill should slide between modes');
+await page.getByRole('button',{name:'Explain',exact:true}).click();
+
 const modeBox = await page.locator(".mode-bar").boundingBox(),
   filterBox = await page.locator(".study-toolbar .filters").boundingBox();
 assert.ok(

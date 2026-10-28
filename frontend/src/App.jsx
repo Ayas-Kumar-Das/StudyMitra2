@@ -1,3 +1,5 @@
+import Brand from "./components/Brand";
+import StudyModes from "./components/StudyModes";
 import Navigation from "./components/Navigation";
 import { transitionWorkspace } from "./lib/transitions";
 import Dropdown from "./components/Dropdown";
@@ -415,6 +417,7 @@ export default function App() {
       <a className="skip-link" href="#main">
         Skip to workspace
       </a>
+      <Brand navigate={navigate} />
       <Navigation
         {...{
           page,
@@ -430,9 +433,9 @@ export default function App() {
         }}
       />
       <div className="workspace">
-        <header className="topbar glass-panel">
+        <header className="masthead">
           <button
-            className={"focus-toggle " + (focus ? "enabled" : "")}
+            className={"focus-toggle glass-panel " + (focus ? "enabled" : "")}
             onClick={() => transitionWorkspace(() => setFocus((v) => !v))}
             aria-pressed={focus}
           >
@@ -442,50 +445,40 @@ export default function App() {
               <i />
             </span>
           </button>
-          <div className="top-actions">
-            <button
-              className="connection-compact"
-              onClick={check}
-              disabled={checking}
-              aria-label={
-                checking
-                  ? "Checking connection"
-                  : online
-                    ? "Backend connected. Refresh connection"
-                    : "Local preview. Reconnect backend"
-              }
-              title={
-                online
-                  ? "Backend connected"
-                  : "Local preview — reconnect backend"
-              }
-            >
-              <span className={online ? "status-dot online" : "status-dot"} />
-              <span>
-                {checking
-                  ? "Connecting…"
-                  : online
-                    ? "Connected"
-                    : "Local preview"}
-              </span>
-              <ArrowClockwise size={14} className={checking ? "spin" : ""} />
-            </button>
-            <span className="top-divider" />
-            <IconButton
-              label={
-                theme === "light"
-                  ? "Switch to dark mode"
-                  : "Switch to light mode"
-              }
-              onClick={() =>
-                transitionWorkspace(() =>
-                  setTheme((v) => (v === "light" ? "dark" : "light")),
-                )
-              }
-            >
-              {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
-            </IconButton>
+          <div className="masthead-title">
+            <h1>
+              {page === "library"
+                ? focus
+                  ? "Document library"
+                  : "Your knowledge, collected."
+                : focus
+                  ? "Study workspace"
+                  : "Big questions. Clear answers."}
+            </h1>
+            <p>
+              {page === "library"
+                ? "Semester by semester. Everything in its place."
+                : focus
+                  ? "Ask questions grounded in your documents."
+                  : "Your notes, untangled. Your next “ohhh, got it”, right here."}
+            </p>
           </div>
+          <button
+            className="theme-control glass-panel"
+            aria-label={
+              theme === "light" ? "Switch to dark mode" : "Switch to light mode"
+            }
+            title={
+              theme === "light" ? "Switch to dark mode" : "Switch to light mode"
+            }
+            onClick={() =>
+              transitionWorkspace(() =>
+                setTheme((v) => (v === "light" ? "dark" : "light")),
+              )
+            }
+          >
+            {theme === "light" ? <Moon size={21} /> : <Sun size={21} />}
+          </button>
         </header>
         <main
           id="main"
@@ -493,50 +486,8 @@ export default function App() {
         >
           {page === "chat" ? (
             <>
-              <div className="page-heading">
-                <div>
-                  <h1>
-                    {focus
-                      ? "Study workspace"
-                      : "Big questions. Clear answers."}
-                    <span className="heading-spark">
-                      <Sparkle weight="fill" />
-                    </span>
-                  </h1>
-                  <p>
-                    {focus
-                      ? "Ask questions grounded in your documents."
-                      : "Your notes, untangled. Your next “ohhh, got it”, right here."}
-                  </p>
-                </div>
-                <button
-                  className="secondary"
-                  onClick={() => {
-                    navigate("library");
-                    setUpload(true);
-                  }}
-                >
-                  <UploadSimple size={18} />
-                  Add materials
-                </button>
-              </div>
               <div className="study-toolbar">
-                <div className="mode-bar" role="group" aria-label="Answer mode">
-                  {modes.map(([id, label, Icon]) => (
-                    <button
-                      key={id}
-                      className={mode === id ? "mode active" : "mode"}
-                      aria-pressed={mode === id}
-                      onClick={() => setMode(id)}
-                    >
-                      <Icon
-                        size={19}
-                        weight={mode === id ? "fill" : "regular"}
-                      />
-                      {label}
-                    </button>
-                  ))}
-                </div>
+                <StudyModes {...{ mode, setMode }} />
                 {filters}
               </div>
               {messages.length === 0 ? (

@@ -53,14 +53,6 @@ export default function Library({
   return (
     <>
       <div className="page-heading">
-        <div>
-          <h1>{focus ? "Document library" : "Your knowledge, collected."}</h1>
-          <p>
-            {focus
-              ? "Manage your study documents and metadata."
-              : "Less “where did I save that?” More “I’ve got this.”"}
-          </p>
-        </div>
         <button
           className="primary"
           onClick={() => {

@@ -1,4 +1,11 @@
-import { Plus, Stop, ArrowUp } from "@phosphor-icons/react";
+import { useState } from "react";
+import {
+  Plus,
+  Stop,
+  ArrowUp,
+  ArrowsOutSimple,
+  ArrowsInSimple,
+} from "@phosphor-icons/react";
 import IconButton from "../components/IconButton";
 export default function Composer({
   send,
@@ -14,8 +21,9 @@ export default function Composer({
   controller,
   online,
 }) {
+  const [expanded, setExpanded] = useState(false);
   return (
-    <div className="composer-area">
+    <div className={"composer-area" + (expanded ? " is-expanded" : "")}>
       <form className="composer" onSubmit={send}>
         <textarea
           ref={composer}
@@ -58,6 +66,20 @@ export default function Composer({
                 : "Add materials to get started"}
             </span>
           </span>
+          <button
+            className="resize-composer icon-button"
+            type="button"
+            aria-label={expanded ? "Shrink message box" : "Expand message box"}
+            aria-pressed={expanded}
+            title={expanded ? "Shrink message box" : "Expand message box"}
+            onClick={() => setExpanded((v) => !v)}
+          >
+            {expanded ? (
+              <ArrowsInSimple size={18} />
+            ) : (
+              <ArrowsOutSimple size={18} />
+            )}
+          </button>
           {busy ? (
             <IconButton
               label="Stop answer"

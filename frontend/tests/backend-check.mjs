@@ -39,9 +39,7 @@ await page.route("**/api/**", (route) => {
   return route.fulfill({ json: { status: "success" } });
 });
 await page.goto("http://127.0.0.1:3000");
-await page
-  .getByRole("button", { name: "Backend connected. Refresh connection" })
-  .waitFor();
+await page.locator(".composer-foot .status-dot.online").waitFor();
 await page.getByRole("button", { name: "Exam prep", exact: true }).click();
 await page.getByRole("combobox", { name: "Filter by semester" }).click();
 await page.getByRole("option", { name: "Semester 3", exact: true }).click();

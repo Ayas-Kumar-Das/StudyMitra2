@@ -48,7 +48,7 @@ colors:
 typography:
   headline:
     fontFamily: "'Manrope Variable', sans-serif"
-    fontSize: "25px"
+    fontSize: "28px"
     fontWeight: 800
     lineHeight: 1.3
     letterSpacing: "-0.035em"
@@ -83,17 +83,20 @@ spacing:
   shell-gap: "18px"
   mobile-inset: "10px"
 components:
-  workspace-topbar:
+  workspace-focus:
     backgroundColor: "{colors.glass}"
     textColor: "{colors.text}"
-    rounded: "{rounded.floating-panel}"
-    height: "46px"
-    padding: "0 12px 0 17px"
+    rounded: "{rounded.modes}"
+    padding: "10px 14px"
+  workspace-theme:
+    backgroundColor: "{colors.glass}"
+    width: "43px"
+    height: "43px"
   workspace-navigation:
     backgroundColor: "{colors.glass}"
     rounded: "{rounded.floating-panel}"
     width: "224px"
-    padding: "20px 14px"
+    padding: "26px 14px"
   study-modes:
     backgroundColor: "{colors.glass}"
     rounded: "{rounded.modes}"
@@ -160,26 +163,30 @@ Dark theme substitutes the dark-prefixed semantic colors using the root `data-th
 
 The rounded humanist letterforms carry friendliness; heavy, tightly spaced headings provide structure. Use the frontmatter roles as representative observed styles, not a claim of a universal type scale. Spacious desktop headings and welcome copy follow the layout conditions below; compact and short-height overrides remain intact.
 
-- **Headline:** page heading; (29px) on wide screens, (25px) by default, (24px) below 1250px, (23px) below 900px, and (21px) on mobile before short-height compaction.
+- **Headline:** centered masthead title, (28px) by default, (24px) on compact desktop and (20px) on mobile before short-height overrides.
 - **Title:** section headings; the welcome title is (25px) on desktop and (22px) on mobile.
 - **Body:** answer prose, limited to (76ch) in conversation. Supporting UI copy commonly uses (12px); mobile tool descriptions use (9px) and disappear in short-height layouts.
 - **Label:** primary and secondary actions. Uppercase section labels use (10px), weight (800), tracking (.1em). Footnotes use (10px), reducing to (9px) on mobile. Tables, library summaries and document footers use tabular numerals. Brand tracking is (-.04em).
 
 ## Layout
 
-The workspace owns the viewport (100dvh); document, body and root do not scroll. A two-column grid places floating navigation beside the workspace. Default navigation width is (224px), with shell-inset and shell-gap from the tokens. Navigation sizes to content with a viewport cap and centers vertically within the desktop shell, in both expanded and focus-collapsed states. The workspace uses a (46px) topbar row and flexible content row separated by (16px). Focus sits on the left of this thin bar; connection/theme actions sit on the right. There is no topbar breadcrumb.
+The workspace owns the viewport (100dvh); body and root do not scroll. A two-column grid places floating navigation beside the workspace. Default navigation width is (224px), with shell-inset and shell-gap from the tokens. Expanded desktop navigation is vertically centered and (70dvh) tall, with (26px 14px) padding. Focus-collapsed navigation remains centered, uses automatic height with (300px) minimum, caps at (70dvh), and has (20px 10px) padding. Branding is separate at the upper left, directly on the same blue gradient backdrop. It retains the implemented Phosphor BookOpen and Manrope wordmark; no proposed replacement logo is part of this system.
 
-Chat uses four rows: heading, tools, flexible welcome/conversation region, composer. Modes and filters share the desktop row. Modes cap at (680px); filters stay compact. The toolbar can wrap below (1250px), returns to one compact row below (1050px), and stacks modes above filters below (900px). The composer anchors at the grid bottom. Conversation alone scrolls, with contained overscroll and a stable scrollbar gutter. Welcome can scroll independently when necessary. Library content owns its vertical scrolling region.
+A (76px) masthead replaces the long glass topbar. It places an independent Focus pill left, the full heading/subtitle centered, and a separate circular theme control right. Workspace row gap is (14px). There is no header upload action, connection label or breadcrumb. Upload remains in the library and composer attachment flow; the composer retains its truthful offline status.
 
-Welcome normally caps at (1260px). Its upload/tool grid uses a (0.9:1.4) ratio. At desktop widths (651px+) and heights (761px+), the spacious base uses a (30px) page heading with (1.35) line height, supporting text (13px) with (8px) top margin, and (18px) chat row gap. Welcome caps at (1280px), uses (26px) heading, (13px) supporting text and (22px) gap; the starter grid uses `clamp(248px, 34dvh, 350px)`. Tool cards use (21px 23px) padding, (15px) titles and (12px) descriptions. Subsequent width-specific rules remain authoritative: at (1700px+) the grid becomes `clamp(265px, 35dvh, 360px)`, page heading (29px), welcome heading (25px), gap (20px) and tool padding (18px 22px); at (1250px) and below the compact rules retain smaller headings, gaps and cards. Mobile and short-height compaction still apply. Library grids use three columns. At (1700px) and above navigation becomes (238px), gap (24px), inset (20px), topbar (48px), and modes cap at (810px). At (1250px) and below navigation becomes (200px), gap/inset (14px), and library grids use two columns. At (1050px) and below navigation becomes a (72px) icon rail with accessible names and a history shortcut.
+Chat has three rows: modes/filters, flexible welcome/conversation region, anchored composer, with (16px) gaps. Modes and filters share the desktop row and compact/stack at the established responsive widths. Conversation scrolls independently with contained overscroll; welcome and library regions retain their own scrolling. User messages remain right aligned; assistant messages remain left aligned. Keep the composer and navigation clear of scrolling content.
 
-At (650px) and below the shell uses (10px) side insets and reserves `77px + env(safe-area-inset-bottom)` underneath content. Navigation becomes a centered bottom pill, (54px) high, (10px) above the safe area. Topbar becomes (42px) with (12px) workspace gap. Library grids become one column. A compact horizontal upload card sits above the two-column tool grid without the paper stack. Conversation padding becomes (13px 11px); user messages may use (88%) width. Keep the bottom navigation clear of the anchored composer.
+At widths (651px+) and heights (700px+), welcome caps at (1040px), with (20px) gap. The starter grid caps at (960px), uses `min(43dvh, 420px)` height, (17px) gaps and a (0.9:1.4) upload-to-tools ratio. Its two-by-two tools approach square tiles, using (24px) padding, (20px) corners, (38px) icons, (16px) titles and (12px) descriptions. Upload card uses (27px) padding and (28px) heading. Below (1250px) desktop tool padding/titles become (17px)/(14px); below (1050px) the starter grid caps at (850px). Width-specific navigation remains (238px) at 1700px+, (200px) at 1250px and below, and a (72px) icon rail at 1050px and below. Focus uses (74px), or (72px) in compact layouts. Branding hides its wordmark in desktop compact/focus layouts.
 
-Short-height layouts compact welcome and composer: desktop thresholds are (760px) and (660px), mobile thresholds (740px) and (620px). Desktop topbar becomes (42px) at the first threshold; at the second, secondary welcome/tool copy and paper decoration disappear. Mobile topbar/navigation become (40px)/(50px) at (740px), with bottom reserve `68px + env(safe-area-inset-bottom)`. At (620px) the welcome heading disappears and the starter grid becomes (174px) high. Keep every starter tool reachable above the composer.
+Desktop heights (760px) and below use a (62px) masthead, (24px) heading, (11px) subtitle, (38px) theme control, (10px) row gaps and starter height `min(37dvh, 290px)`. Existing narrower and shorter content compaction remains in force.
+
+At (650px) and below branding sits at the upper left with (16px) wordmark and (29px) mark. Masthead becomes a two-row (102px) region: compact controls beside branding, then centered title/subtitle. The title is (20px), subtitle (10px). The bottom navigation pill is (52px) tall and respects the safe area. Starter cards retain their compact horizontal upload/two-column tools composition. Library grids become one column; conversation and composer remain independently contained.
+
+At mobile height (700px) and below masthead becomes (87px), heading (18px), and starter grid (192px); the welcome heading disappears. At (600px) and below masthead becomes (72px), subtitle disappears and starter grid becomes (164px). At width (370px) and below branding and masthead type shrink further and the focus label hides visually while retaining its accessible name. Preserve compact mobile and short-height reachability.
 
 ## Elevation & Depth
 
-Floating navigation and topbar use translucent glass, a glass-edge border, inset highlight and diffuse depth. Glass backdrop blur is (24px) with saturation (140%); modes use (22px)/(165%). Visible blue radial backdrop fields show through the translucent panels. Diagonal glass-highlight reflection layers cross navigation, topbar, modes and starter tool cards; tool cards use glass-card fill with (20px)/(150%) blur/saturation. Composer uses a (62%) surface mix over transparency with (22px)/(145%) blur/saturation. Theme-specific glass preserves the blue palette; muted text is deliberately darker in light theme and lighter in dark theme for readability. Content depth otherwise comes primarily from surface tone and fine borders. Shadows support interaction and small overlays rather than making every card float. A shared shadow variable exists in the stylesheet, but current components use their own subtle shadows.
+Floating navigation and masthead controls use translucent glass, a glass-edge border, inset highlight and diffuse depth. Glass backdrop blur is (24px) with saturation (140%); modes use (22px)/(165%). Visible blue radial backdrop fields show through the translucent panels. Diagonal glass-highlight reflection layers cross navigation, focus/theme controls, modes and starter tool cards; tool cards use glass-card fill with (20px)/(150%) blur/saturation. Composer uses a (62%) surface mix over transparency with (22px)/(145%) blur/saturation. Theme-specific glass preserves the blue palette; muted text is deliberately darker in light theme and lighter in dark theme for readability. Content depth otherwise comes primarily from surface tone and fine borders. Shadows support interaction and small overlays rather than making every card float. A shared shadow variable exists in the stylesheet, but current components use their own subtle shadows.
 
 - Composer at rest: `inset 0 1px 0 #ffffff70, 0 8px 26px #2443740d`; focused: `0 5px 25px #315dec12`.
 - Primary action hover: `0 5px 15px #315dec25`.
@@ -210,9 +217,11 @@ Upload fields use a line border, background fill and field radius. Labels remain
 
 ### Navigation
 
+Branding is a separate upper-left link rather than an item inside the sidebar. The expanded sidebar deliberately occupies (70dvh); focus mode retains a compact automatic-height rail.
+
 Floating glass panels use floating-panel corners; the collapsed icon rail uses collapsed-nav corners. Actions have (14px) corners and at least (44px) height. Selected navigation combines a selected-color gradient, inset highlight and accent text with a filled Phosphor icon. Hover shifts an item (2px) right. Preserve accessible names, titles and aria-current when labels collapse. Recent chats have no trailing action icons. View all chats opens the history dialog for selection, new chats and deletion; compact navigation offers its history shortcut.
 
-Modes use modes-radius corners and (4px) container padding. Buttons use mode-radius corners, (10px 8px) padding and (11px) labels. Active modes use a surface-to-selected gradient with an inset highlight; hover lifts (1px), pressing scales to (.96). Preserve pressed state.
+Modes use modes-radius corners and (4px) container padding. A single measured glass indicator sits behind the active button, with (22px) corners and (4px) vertical inset, or (3px) on mobile. Its position and width are measured from the selected button after mode changes, ResizeObserver updates and font readiness. It slides/resizes over (.34s) with `cubic-bezier(.22,1,.36,1)`. Buttons have no separate active background or shadow; hover changes text and a faint translucent fill. Light and dark themes use the same glass selection structure with theme-specific reflection and border colors. Preserve aria-pressed and the active filled Phosphor icon. Reduced motion removes indicator transitions.
 
 ### Library Folders
 
@@ -222,7 +231,7 @@ Missing metadata displays “Unassigned semester”, “Unassigned subject” an
 
 ### Study Composer and Sources
 
-The anchored composer uses (18px) corners and (12px 15px 10px) padding, keeping attachment, answer mode and send/stop controls together. Its textarea starts at (33px) and caps at (80px), scrolling internally. User messages align right, with selected-fill bubbles, (78%) maximum width capped at (780px), and asymmetric (16px 5px 16px 16px) corners. Assistant messages align left, cap at (1000px) and use readable prose width. Long tables and code scroll inside their content regions. Sending is disabled for an empty question. Inline citation buttons use selected fill and open the source drawer. The drawer is a native modal dialog on the right, (440px) wide and at most (95vw); document previews are centered dialogs with scrollable content. Toasts use inverse text/surface colors and a dismiss control.
+The anchored composer uses (18px) corners and (12px 15px 10px) padding, keeping attachment, answer mode and send/stop controls together. Its textarea starts at (33px) and caps at (80px), scrolling internally. A labelled Expand/Shrink icon button toggles a larger writing area and exposes aria-pressed: expanded desktop height is `clamp(70px, 16dvh, 150px)`; mobile expanded height is (80px). Height changes use (.24s) with `cubic-bezier(.16,1,.3,1)`, disabled for reduced motion. User messages align right, with selected-fill bubbles, (78%) maximum width capped at (780px), and asymmetric (16px 5px 16px 16px) corners. Assistant messages align left, cap at (1000px) and use readable prose width. Long tables and code scroll inside their content regions. Sending is disabled for an empty question. Inline citation buttons use selected fill and open the source drawer. The drawer is a native modal dialog on the right, (440px) wide and at most (95vw); document previews are centered dialogs with scrollable content. Toasts use inverse text/surface colors and a dismiss control.
 
 ### Theme, Focus and Motion
 

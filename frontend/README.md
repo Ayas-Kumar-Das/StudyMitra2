@@ -74,3 +74,8 @@ node tests/dropdown-check.mjs
 ```
 
 The workspace check uses isolated, explicitly mocked backend fixtures. It verifies viewport containment at eight sizes, welcome/composer visibility, role alignment, long-answer scrolling, hierarchy and missing metadata, raw API filter values, citations, dark/focus states and reduced motion. It does not claim to validate a live backend or model.
+### Compact masthead and message controls
+
+`components/Brand.jsx` keeps branding at the upper left on the shared page gradient. `components/Navigation.jsx` uses a centered 70dvh panel on desktop, a compact rail in focus mode, and the bottom dock on phones. The masthead consists of independent Focus/theme controls and a centered heading; it has no full-width bar or connection-status label. Upload remains in the library and welcome flow.
+
+`components/StudyModes.jsx` measures the selected study button and moves a single glass indicator across the panel, in either theme. `features/Composer.jsx` exposes an Expand/Shrink message box control. Both motions honor reduced-motion preferences. Unapproved logo concepts are kept outside the shipping app.
