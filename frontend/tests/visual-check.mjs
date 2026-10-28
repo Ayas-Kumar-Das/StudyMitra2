@@ -9,19 +9,19 @@ await page.waitForSelector(".welcome");
 await page.waitForTimeout(300);
 await page.waitForTimeout(250);
 await page.screenshot({
-  path: "../.impeccable/review/desktop.png",
+  path: "../.impeccable/review/smoke-desktop.png",
   fullPage: true,
 });
 await page.getByRole("button", { name: "Switch to dark mode" }).click();
 await page.waitForTimeout(250);
 await page.screenshot({
-  path: "../.impeccable/review/dark.png",
+  path: "../.impeccable/review/smoke-dark.png",
   fullPage: true,
 });
 await page.getByRole("button", { name: "Focus mode" }).click();
 await page.waitForTimeout(250);
 await page.screenshot({
-  path: "../.impeccable/review/focus.png",
+  path: "../.impeccable/review/smoke-focus.png",
   fullPage: true,
 });
 await page.getByRole("button", { name: "Focus mode" }).click();
@@ -40,27 +40,33 @@ await page.getByLabel("Subject", { exact: true }).fill("Computer Science");
 await page.getByRole("combobox", { name: "Semester", exact: true }).click();
 await page.getByRole("option", { name: "Semester 3", exact: true }).click();
 await page.getByRole("button", { name: "Save to my library" }).click();
+await page.getByRole("button", { name: /Semester 3.*document/ }).click();
+await page.getByRole("button", { name: /Computer Science.*document/ }).click();
+await page.getByRole("button", { name: /Lecture notes.*document/ }).click();
 await page.waitForSelector(".document-card");
 await page.waitForTimeout(250);
 await page.screenshot({
-  path: "../.impeccable/review/library.png",
+  path: "../.impeccable/review/smoke-library.png",
   fullPage: true,
 });
 await page.getByRole("button", { name: "View document", exact: true }).click();
 await page.waitForSelector(".text-preview");
 await page.keyboard.press("Escape");
 await page.reload();
+await page.getByRole("button", { name: /Semester 3.*document/ }).click();
+await page.getByRole("button", { name: /Computer Science.*document/ }).click();
+await page.getByRole("button", { name: /Lecture notes.*document/ }).click();
 await page.waitForSelector(".document-card");
 await page.setViewportSize({ width: 390, height: 844 });
 await page.waitForTimeout(250);
 await page.screenshot({
-  path: "../.impeccable/review/mobile-library.png",
+  path: "../.impeccable/review/smoke-mobile-library.png",
   fullPage: true,
 });
 await page.getByRole("button", { name: "Study space", exact: true }).click();
 await page.waitForTimeout(250);
 await page.screenshot({
-  path: "../.impeccable/review/mobile.png",
+  path: "../.impeccable/review/smoke-mobile.png",
   fullPage: true,
 });
 console.log(

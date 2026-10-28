@@ -9,7 +9,7 @@ await page.getByRole("combobox", { name: "Filter by document type" }).click();
 await page.getByRole("option", { name: "All types", exact: true }).waitFor();
 await page.waitForTimeout(200);
 await page.screenshot({
-  path: "../.impeccable/review/dropdown-light.png",
+  path: "../.impeccable/review/smoke-dropdown-light.png",
   fullPage: false,
 });
 await page.getByRole("option", { name: "All types", exact: true }).focus();
@@ -27,7 +27,7 @@ await page.waitForTimeout(250);
 await page.getByRole("combobox", { name: "Filter by document type" }).click();
 await page.waitForTimeout(200);
 await page.screenshot({
-  path: "../.impeccable/review/dropdown-dark.png",
+  path: "../.impeccable/review/smoke-dropdown-dark.png",
   fullPage: false,
 });
 await page.keyboard.press("Escape");
@@ -35,7 +35,7 @@ await page.setViewportSize({ width: 390, height: 844 });
 await page.getByRole("combobox", { name: "Filter by document type" }).click();
 await page.waitForTimeout(200);
 await page.screenshot({
-  path: "../.impeccable/review/dropdown-mobile.png",
+  path: "../.impeccable/review/smoke-dropdown-mobile.png",
   fullPage: false,
 });
 assert.equal(

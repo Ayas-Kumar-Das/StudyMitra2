@@ -1576,11 +1576,7 @@ nav {
 [data-focus="true"] .welcome {
   margin-top: 35px;
 }
-[data-focus="true"] * {
-  animation: none !important;
-  transition: none !important;
-  scroll-behavior: auto !important;
-}
+[data-focus="true"] .file-stack, [data-focus="true"] .tool-arrow {transition:none!important;animation:none!important}
 @media (min-width: 1500px) {
   .main {
     padding-top: 42px;

@@ -55,15 +55,13 @@ export default function Welcome({
             ) : (
               <>
                 Drop the notes.
-                <br />
-                Unlock the knowledge.
+                <br /> Unlock the knowledge.
               </>
             )}
           </h3>
           <p>
             PDFs, lecture notes, textbooks.
-            <br />
-            Your whole syllabus, one space.
+            <br /> Your whole syllabus, one space.
           </p>
           <span className="card-link">
             Add study materials

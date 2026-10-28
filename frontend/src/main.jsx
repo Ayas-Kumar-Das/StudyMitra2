@@ -3,4 +3,5 @@ import { createRoot } from "react-dom/client";
 import "@fontsource-variable/manrope";
 import App from "./App";
 import "./styles/app.css";
+import "./styles/workspace.css";
 createRoot(document.getElementById("root")).render(<App />);

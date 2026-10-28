@@ -1,3 +1,4 @@
+import LibraryBrowser from "./LibraryBrowser";
 import Dropdown from "../components/Dropdown";
 import {
   Plus,
@@ -9,8 +10,6 @@ import {
   UploadSimple,
   CheckCircle,
   MagnifyingGlass,
-  ArrowUpRight,
-  Trash,
   ArrowClockwise,
   WifiSlash,
 } from "@phosphor-icons/react";
@@ -38,6 +37,9 @@ export default function Library({
   setSearch,
   filters,
   filtered,
+  semester,
+  subject,
+  docType,
   setSubject,
   setSemester,
   setDocType,
@@ -240,78 +242,13 @@ export default function Library({
         </div>
         {filters}
       </div>
-      <div className="section-heading">
-        <h2>
-          All materials <span className="muted">{filtered.length}</span>
-        </h2>
-        <span className="muted small">
-          {focus
-            ? "Search and filter your documents."
-            : "Your next breakthrough is in here."}
-        </span>
-      </div>
       {filtered.length ? (
-        <div className="document-grid">
-          {filtered.map((d) => (
-            <article className="document-card" key={d.id}>
-              <div className="document-top">
-                <span className="doc-icon">
-                  <FileText size={28} weight="duotone" />
-                </span>
-                <span className="file-type">{d.file_type || "DOC"}</span>
-                <IconButton
-                  label={"Delete " + (d.title || d.original_filename)}
-                  onClick={() => setDeleting(d)}
-                >
-                  <Trash size={18} />
-                </IconButton>
-              </div>
-              <button className="document-title" onClick={() => openDoc(d)}>
-                {d.title || d.original_filename}
-                <ArrowUpRight size={17} />
-              </button>
-              <p className="doc-filename">{d.original_filename}</p>
-              <div className="doc-tags">
-                {d.subject && <span>{d.subject}</span>}
-                {d.semester && <span>Sem {d.semester}</span>}
-                {d.doc_type && <span>{typeLabel(d.doc_type)}</span>}
-              </div>
-              <div className="document-footer">
-                <span className="doc-state">
-                  {d.status === "local" ? (
-                    <>
-                      <span className="status-dot" />
-                      Local only
-                    </>
-                  ) : (
-                    <>
-                      <CheckCircle size={15} />
-                      {d.status || "Indexed"}
-                    </>
-                  )}
-                </span>
-                <span>{size(d.file_size || 0)}</span>
-              </div>
-              <div className="doc-actions">
-                <button className="text-button" onClick={() => openDoc(d)}>
-                  View document
-                  <ArrowUpRight size={15} />
-                </button>
-                <button
-                  className="text-button"
-                  disabled={reindexing === d.id}
-                  onClick={() => reindex(d)}
-                >
-                  <ArrowClockwise
-                    size={15}
-                    className={reindexing === d.id ? "spin" : ""}
-                  />
-                  {d.status === "local" ? "Index for AI" : "Re-index"}
-                </button>
-              </div>
-            </article>
-          ))}
-        </div>
+        <LibraryBrowser
+          documents={filtered}
+          search={search}
+          resetKey={`${semester}|${subject}|${docType}`}
+          {...{ openDoc, setDeleting, reindexing, reindex }}
+        />
       ) : (
         <div className="empty-library">
           <Books size={46} weight="duotone" />

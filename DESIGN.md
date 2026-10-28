@@ -37,10 +37,14 @@ colors:
   focus-ring: "#739af5"
   danger: "#b53549"
   dark-error: "#ffadbc"
+  glass: "rgba(249, 252, 255, 0.74)"
+  glass-edge: "rgba(255, 255, 255, 0.9)"
+  dark-glass: "rgba(24, 38, 62, 0.78)"
+  dark-glass-edge: "rgba(158, 192, 242, 0.16)"
 typography:
   headline:
     fontFamily: "'Manrope Variable', sans-serif"
-    fontSize: "29px"
+    fontSize: "25px"
     fontWeight: 800
     lineHeight: 1.3
     letterSpacing: "-0.035em"
@@ -60,16 +64,36 @@ typography:
 rounded:
   field: "7px"
   control: "8px"
-  document: "13px"
+  document: "16px"
   panel: "14px"
-  hero: "15px"
+  hero: "18px"
+  floating-panel: "30px"
+  collapsed-nav: "36px"
+  modes: "24px"
+  mode: "20px"
 spacing:
   compact: "8px"
   control-x: "15px"
   card: "20px"
-  desktop-gutter: "38px"
-  mobile-gutter: "18px"
+  shell-inset: "16px"
+  shell-gap: "18px"
+  mobile-inset: "10px"
 components:
+  workspace-topbar:
+    backgroundColor: "{colors.glass}"
+    textColor: "{colors.text}"
+    rounded: "{rounded.floating-panel}"
+    height: "46px"
+    padding: "0 12px 0 17px"
+  workspace-navigation:
+    backgroundColor: "{colors.glass}"
+    rounded: "{rounded.floating-panel}"
+    width: "224px"
+    padding: "20px 14px"
+  study-modes:
+    backgroundColor: "{colors.glass}"
+    rounded: "{rounded.modes}"
+    padding: "4px"
   button-primary:
     backgroundColor: "{colors.accent}"
     textColor: "{colors.surface}"
@@ -87,7 +111,7 @@ components:
     backgroundColor: "{colors.surface}"
     textColor: "{colors.text}"
     rounded: "{rounded.document}"
-    padding: "19px"
+    padding: "17px"
   input:
     backgroundColor: "{colors.bg}"
     textColor: "{colors.text}"
@@ -101,9 +125,9 @@ components:
 
 **Creative North Star: “Blue-hour study desk”**
 
-StudyMitra pairs an orderly study workspace with the warmth of a helpful classmate. Pale blue paper, dark ink, rounded controls, Phosphor icons and a luminous blue upload card make personal materials feel approachable. The interface is compact and organized, with a stable navigation rail and an obvious place to ask a question.
+StudyMitra pairs an orderly study workspace with the warmth of a helpful classmate. Pale blue paper, dark ink, rounded controls, Phosphor icons and a luminous blue upload card make personal materials feel approachable. The interface is compact and organized, with floating glass navigation and an anchored place to ask a question.
 
-Focus mode quiets the personality through direct language, fewer decorative elements and a tonal upload card. Light and dark themes preserve the same spatial hierarchy. The React application and its styles are the implementation source of truth; these guidelines describe the current code.
+Focus mode quiets the personality through direct language, fewer decorative elements and a tonal upload card. Light and dark themes preserve the same spatial hierarchy. The React application and its styles are the implementation source of truth; these guidelines describe the current code. workspace.css is imported after app.css and owns the structural overrides.
 
 **Key Characteristics:**
 
@@ -132,24 +156,28 @@ Dark theme substitutes the dark-prefixed semantic colors using the root `data-th
 
 The rounded humanist letterforms carry friendliness; heavy, tightly spaced headings provide structure. Use the frontmatter roles as representative observed styles, not a claim of a universal type scale.
 
-- **Headline:** page heading; reduces to (25px), then (24px), then (23px) across narrower layouts.
+- **Headline:** page heading; (29px) on wide screens, (25px) by default, (24px) below 1250px, (23px) below 900px, and (21px) on mobile before short-height compaction.
 - **Title:** section headings; the welcome title is (25px) on desktop and (22px) on mobile.
-- **Body:** answer prose, limited to (74ch). Supporting UI copy commonly uses (12px); mobile tool descriptions use (11px).
+- **Body:** answer prose, limited to (76ch) in conversation. Supporting UI copy commonly uses (12px); mobile tool descriptions use (9px) and disappear in short-height layouts.
 - **Label:** primary and secondary actions. Uppercase section labels use (10px), weight (800), tracking (.1em). Footnotes use (10px), reducing to (9px) on mobile. Tables, library summaries and document footers use tabular numerals. Brand tracking is (-.04em).
 
 ## Layout
 
-Desktop uses a fixed (240px) sidebar and matching workspace offset, an (80px) topbar, and a centered main area capped at (1450px). The welcome and composer regions cap at (1050px); conversation content caps at (900px). Main gutters follow the desktop-gutter token.
+The workspace owns the viewport (100dvh); document, body and root do not scroll. A two-column grid places floating navigation beside the workspace. Default navigation width is (224px), with shell-inset and shell-gap from the tokens. Navigation sizes to content with a viewport cap. The workspace uses a (46px) topbar row and flexible content row separated by (16px). Focus sits on the left of this thin bar; connection/theme actions sit on the right. There is no topbar breadcrumb.
 
-The welcome grid combines an upload card and a two-by-two tool grid at a (1:1.4) ratio with (16px) gap. Document cards form three columns. At (1500px) and above the hero ratio becomes (1:1.5), with more breathing room.
+Chat uses four rows: heading, tools, flexible welcome/conversation region, composer. Modes and filters share the desktop row. Modes cap at (680px); filters stay compact. The toolbar can wrap below (1250px), returns to one compact row below (1050px), and stacks modes above filters below (900px). The composer anchors at the grid bottom. Conversation alone scrolls, with contained overscroll and a stable scrollbar gutter. Welcome can scroll independently when necessary. Library content owns its vertical scrolling region.
 
-At (1150px) and below the sidebar becomes (210px), main gutters (25px), and documents use two columns. At (900px) and below the sidebar becomes a (76px) icon rail. At (650px) and below navigation becomes a horizontal top strip; workspace offset disappears, main gutters use mobile-gutter, upload and document grids become one column, and the tool grid remains two columns. Modes scroll horizontally. Upload fields collapse from two columns to one; modal padding contracts. Preserve content wrapping and horizontally scrollable answer tables and code. The mobile upload heading and supporting copy are limited to (68%) width; the heading uses (23px) and the paper stack scales to (.9) at the bottom right.
+Welcome caps at (1260px). Its upload/tool grid uses a (0.9:1.4) ratio and `clamp(190px, 28dvh, 285px)` height. Library grids use three columns. At (1700px) and above navigation becomes (238px), gap (24px), inset (20px), topbar (48px), and modes cap at (810px). At (1250px) and below navigation becomes (200px), gap/inset (14px), and library grids use two columns. At (1050px) and below navigation becomes a (72px) icon rail with accessible names and a history shortcut.
+
+At (650px) and below the shell uses (10px) side insets and reserves `77px + env(safe-area-inset-bottom)` underneath content. Navigation becomes a centered bottom pill, (54px) high, (10px) above the safe area. Topbar becomes (42px) with (12px) workspace gap. Library grids become one column. A compact horizontal upload card sits above the two-column tool grid without the paper stack. Conversation padding becomes (13px 11px); user messages may use (88%) width. Keep the bottom navigation clear of the anchored composer.
+
+Short-height layouts compact welcome and composer: desktop thresholds are (760px) and (660px), mobile thresholds (740px) and (620px). Desktop topbar becomes (42px) at the first threshold; at the second, secondary welcome/tool copy and paper decoration disappear. Mobile topbar/navigation become (40px)/(50px) at (740px), with bottom reserve `68px + env(safe-area-inset-bottom)`. At (620px) the welcome heading disappears and the starter grid becomes (174px) high. Keep every starter tool reachable above the composer.
 
 ## Elevation & Depth
 
-Depth comes primarily from surface tone and fine borders. Shadows support interaction and small overlays rather than making every card float. A shared shadow variable exists in the stylesheet, but current components use their own subtle shadows.
+Floating navigation and topbar use translucent glass, a glass-edge border, inset highlight and diffuse depth. Glass backdrop blur is (24px) with saturation (140%); modes use (18px)/(130%). Theme-specific glass preserves the blue palette. Content depth otherwise comes primarily from surface tone and fine borders. Shadows support interaction and small overlays rather than making every card float. A shared shadow variable exists in the stylesheet, but current components use their own subtle shadows.
 
-- Composer at rest: `0 5px 20px #24437406`; focused: `0 5px 25px #315dec12`.
+- Composer at rest: `0 5px 24px #24437406`; focused: `0 5px 25px #315dec12`.
 - Primary action hover: `0 5px 15px #315dec25`.
 - Toast: `0 8px 32px #10203a25`.
 - Dialog backdrop: `#10234066`.
@@ -158,7 +186,7 @@ Depth comes primarily from surface tone and fine borders. Shadows support intera
 
 ## Shapes
 
-Controls have gently curved corners, cards slightly broader curves, and the upload hero the broadest shared card silhouette. Avatar and status indicators are circular. Document tags use (5px) corners; the composer uses document-radius corners. Borders are generally (1px), and upload affordances use a dashed stroke. The decorative paper stack tilts within an overflow-clipped hero.
+Controls have gently curved corners, cards slightly broader curves, and the upload hero the broadest shared card silhouette. Avatar and status indicators are circular. Document tags use (5px) corners; the composer uses hero-radius corners. Borders are generally (1px), and upload affordances use a dashed stroke. The decorative paper stack tilts within an overflow-clipped hero.
 
 ## Components
 
@@ -170,7 +198,7 @@ Keyboard focus uses a (3px) focus-ring outline offset by (3px). Preserve accessi
 
 ### Cards / Containers
 
-Tool cards have document-radius corners, a line border, surface fill and (20px) desktop padding. Hover changes the border and surface tone; the corner arrow moves (2px, -2px). Document cards use the frontmatter component token and offer distinct preview, index and delete controls. Do not turn metadata tags into actions.
+Tool cards have document-radius corners, a line border, surface fill and (15px 17px) desktop padding. Hover changes the border and surface tone; the corner arrow moves (2px, -2px). Document cards use the frontmatter component token and offer distinct preview, index and delete controls. Do not turn metadata tags into actions.
 
 ### Inputs / Fields
 
@@ -178,17 +206,25 @@ Upload fields use a line border, background fill and field radius. Labels remain
 
 ### Navigation
 
-Active navigation uses selected fill and accent text, paired with a filled Phosphor icon. Modes are grouped buttons with pressed state, surface fill and a small shadow when selected. Preserve accessible names when the tablet rail hides visual labels. Recent chats and supplemental sidebar content are hidden in the compact rail; compact new-chat and history controls appear at (900px) and below. History opens in a native modal dialog, (450px) wide with (24px) padding and panel-radius corners. On mobile, the breadcrumb is hidden to preserve room for these actions.
+Floating glass panels use floating-panel corners; the collapsed icon rail uses collapsed-nav corners. Actions have (14px) corners and at least (44px) height. Selected navigation combines a selected-color gradient, inset highlight and accent text with a filled Phosphor icon. Hover shifts an item (2px) right. Preserve accessible names, titles and aria-current when labels collapse. Recent chats have no trailing action icons. View all chats opens the history dialog for selection, new chats and deletion; compact navigation offers its history shortcut.
+
+Modes use modes-radius corners and (4px) container padding. Buttons use mode-radius corners, (10px 8px) padding and (11px) labels. Active modes use a surface-to-selected gradient with an inset highlight; hover lifts (1px), pressing scales to (.96). Preserve pressed state.
+
+### Library Folders
+
+Browse semester → subject → category → documents. Folder cards use (16px) corners, (22px 18px) padding and (100px) minimum height; icon blocks are (46px × 48px). Hover changes the border to accent, lifts (2px), and rotates the icon (-4deg). Local library breadcrumbs and a back control navigate the hierarchy; the topbar stays breadcrumb-free.
+
+Missing metadata displays “Unassigned semester”, “Unassigned subject” and “Uncategorized”. Grouping trims/stringifies values for comparison and naturally sorts folders without rewriting raw document metadata or backend values. Search displays matching documents directly and resets the folder path; filters also reset the path. Friendly category display labels preserve the raw document type.
 
 ### Study Composer and Sources
 
-The bordered composer keeps attachment, answer mode and send/stop controls together. Sending is disabled for an empty question. Inline citation buttons use selected fill and open the source drawer. The drawer is a native modal dialog on the right, (440px) wide and at most (95vw); document previews are centered dialogs with scrollable content. Toasts use inverse text/surface colors and a dismiss control.
+The anchored composer uses (18px) corners and (12px 15px 10px) padding, keeping attachment, answer mode and send/stop controls together. Its textarea starts at (33px) and caps at (80px), scrolling internally. User messages align right, with selected-fill bubbles, (78%) maximum width capped at (780px), and asymmetric (16px 5px 16px 16px) corners. Assistant messages align left, cap at (1000px) and use readable prose width. Long tables and code scroll inside their content regions. Sending is disabled for an empty question. Inline citation buttons use selected fill and open the source drawer. The drawer is a native modal dialog on the right, (440px) wide and at most (95vw); document previews are centered dialogs with scrollable content. Toasts use inverse text/surface colors and a dismiss control.
 
 ### Theme, Focus and Motion
 
-Theme and focus preferences persist in browser storage. Focus mode switches headings and prompts to direct language, removes the note, sparkle, paper stack, grounding note and welcome emblem, and replaces the gradient with surface-2. It preserves tools and document actions.
+Theme and focus preferences persist in browser storage. Focus mode switches headings and prompts to direct language, removes the note, sparkle, paper stack, grounding note and welcome emblem, and replaces the gradient with surface-2. It preserves tools and document actions. Desktop navigation collapses to (74px), or (72px) in compact layouts, replacing inline history with the dialog shortcut.
 
-Normal controls use short (.18s) color, shadow and transform transitions. The paper stack uses (.3s) with `cubic-bezier(.16,1,.3,1)`; the tool arrow uses (.2s ease). Both focus mode and `prefers-reduced-motion: reduce` disable animation, transitions and smooth scrolling. Maintain this behavior for new elements.
+Theme and focus use a bounded whole-workspace View Transition when supported: outgoing content fades, blurs to (2px) and scales to (.995) over (.22s); incoming content resolves from (3px) blur and (1.006) scale over (.36s) with `cubic-bezier(.16,1,.3,1)`. Unsupported browsers and reduced-motion preference update state directly. Shell column changes use (.35s) with the same easing. Normal controls use short (.18s) color, shadow and transform transitions. The paper stack uses (.3s) with `cubic-bezier(.16,1,.3,1)`; the tool arrow uses (.2s ease). Focus suppresses decorative paper and arrow motion while retaining the requested mode transition. The `prefers-reduced-motion: reduce` setting disables all animation, transitions and smooth scrolling. Maintain this behavior for new elements.
 
 ## Do's and Don'ts
 

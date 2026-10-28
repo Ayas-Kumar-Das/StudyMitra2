@@ -40,7 +40,7 @@ await page.route("**/api/**", (route) => {
 });
 await page.goto("http://127.0.0.1:3000");
 await page
-  .getByRole("button", { name: "Backend connected AI tools are ready" })
+  .getByRole("button", { name: "Backend connected. Refresh connection" })
   .waitFor();
 await page.getByRole("button", { name: "Exam prep", exact: true }).click();
 await page.getByRole("combobox", { name: "Filter by semester" }).click();
@@ -55,7 +55,7 @@ await page
 await page.getByRole("button", { name: "Source 1", exact: true }).click();
 await page.getByRole("dialog", { name: "Answer sources" }).waitFor();
 await page.screenshot({
-  path: "../.impeccable/review/sources.png",
+  path: "../.impeccable/review/smoke-sources.png",
   fullPage: true,
 });
 await page.keyboard.press("Escape");
@@ -68,14 +68,14 @@ await page
   .getByRole("heading", { name: "Virtual memory", exact: true })
   .waitFor();
 await page.screenshot({
-  path: "../.impeccable/review/answer.png",
+  path: "../.impeccable/review/smoke-answer.png",
   fullPage: true,
 });
 await page.setViewportSize({ width: 390, height: 844 });
 await page.getByRole("button", { name: "Open chat history" }).click();
 await page.getByRole("dialog", { name: "Chat history" }).waitFor();
 await page.screenshot({
-  path: "../.impeccable/review/mobile-history.png",
+  path: "../.impeccable/review/smoke-mobile-history.png",
   fullPage: true,
 });
 await page
