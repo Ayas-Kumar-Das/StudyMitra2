@@ -152,7 +152,13 @@
         "name": "spacious-desktop-min-height",
         "value": "761px"
       }
-    ]
+    ],
+    "brandAssets": {
+      "approvedSource": "frontend/public/branding/studymitra-approved.png",
+      "favicon": "frontend/public/branding/favicon.svg",
+      "approval": "User approved the second hand-refinement image (v4), 2026-10-28.",
+      "rendering": "Emblem and wordmark use viewports over unchanged approved pixels. Dark mode filters only the wordmark. Tab icon includes the emblem alone."
+    }
   },
   "components": [
     {

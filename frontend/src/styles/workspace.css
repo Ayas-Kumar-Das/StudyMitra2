@@ -2720,3 +2720,79 @@ body {
     transition: none !important;
   }
 }
+/* Approved book/handshake S–M identity; no generic icon or square tile behind it. */
+.app-shell .site-brand .brand-mark {
+  background: none;
+  color: inherit;
+  border: 0;
+  box-shadow: none;
+  border-radius: 0;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  overflow: visible;
+}
+.site-brand .brand-mark svg {
+  width: 42px;
+  height: 42px;
+  display: block;
+  flex-shrink: 0;
+}
+.site-brand .brand-name {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+.site-brand .brand-wordmark {
+  display: block;
+  width: 100%;
+  max-width: 149px;
+  height: auto;
+  aspect-ratio: 1460/311;
+  overflow: hidden;
+}
+.site-brand {
+  gap: 9px;
+}
+[data-theme="dark"] .site-brand .brand-wordmark {
+  filter: brightness(0) invert(1);
+}
+@media (max-width: 1050px) and (min-width: 651px) {
+  .site-brand .brand-name {
+    display: none;
+  }
+}
+@media (max-width: 650px) {
+  .app-shell .site-brand .brand-mark,
+  .site-brand .brand-mark svg {
+    width: 29px;
+    height: 29px;
+  }
+  .site-brand .brand-name,
+  .focus-layout .site-brand .brand-name {
+    display: flex;
+  }
+  .site-brand .brand-wordmark {
+    width: 94px;
+    max-width: 94px;
+  }
+  .site-brand {
+    gap: 6px;
+  }
+}
+@media (max-width: 370px) {
+  .app-shell .site-brand .brand-mark,
+  .site-brand .brand-mark svg {
+    width: 26px;
+    height: 26px;
+  }
+  .site-brand .brand-wordmark {
+    width: 82px;
+    max-width: 82px;
+  }
+  .site-brand {
+    gap: 5px;
+  }
+}

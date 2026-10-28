@@ -14,3 +14,6 @@ Preserve explain, exam answer, summarize, compare, PYQs, quiz, filters, document
 Blue family with 5–6 gradient colors, readable light and dark themes, Phosphor icons, playful student language and a focus switch that quiets personality without removing features. Organized source folders. No Sites skill.
 ## Accessibility & Inclusion
 Readability above color, keyboard-accessible controls, reduced motion and responsive layouts.
+
+## Approved Brand Asset
+The user approved the v4 S/M open-book and handshake logo on 2026-10-28. Use the approved artwork in `frontend/public/branding/studymitra-approved.png`; browser tabs use its emblem only.
