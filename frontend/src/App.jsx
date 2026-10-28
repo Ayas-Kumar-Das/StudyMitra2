@@ -448,16 +448,20 @@ export default function App() {
           <div className="masthead-title">
             <h1>
               {page === "library"
-                ? focus
-                  ? "Document library"
-                  : "Your knowledge, collected."
+                ? upload
+                  ? "Add materials"
+                  : focus
+                    ? "Document library"
+                    : "Your knowledge, collected."
                 : focus
                   ? "Study workspace"
                   : "Big questions. Clear answers."}
             </h1>
             <p>
               {page === "library"
-                ? "Semester by semester. Everything in its place."
+                ? upload
+                  ? "Bring a file. Keep your resources organized."
+                  : "Semester by semester. Everything in its place."
                 : focus
                   ? "Ask questions grounded in your documents."
                   : "Your notes, untangled. Your next “ohhh, got it”, right here."}
@@ -482,7 +486,12 @@ export default function App() {
         </header>
         <main
           id="main"
-          className={"main " + (page === "chat" ? "chat-main" : "library-main")}
+          className={
+            "main " +
+            (page === "chat"
+              ? "chat-main"
+              : "library-main" + (upload ? " is-uploading" : ""))
+          }
         >
           {page === "chat" ? (
             <>

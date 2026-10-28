@@ -79,3 +79,8 @@ The workspace check uses isolated, explicitly mocked backend fixtures. It verifi
 `components/Brand.jsx` keeps branding at the upper left on the shared page gradient. `components/Navigation.jsx` uses a centered 70dvh panel on desktop, a compact rail in focus mode, and the bottom dock on phones. The masthead consists of independent Focus/theme controls and a centered heading; it has no full-width bar or connection-status label. Upload remains in the library and welcome flow.
 
 `components/StudyModes.jsx` measures the selected study button and moves a single glass indicator across the panel, in either theme. `features/Composer.jsx` exposes an Expand/Shrink message box control. Both motions honor reduced-motion preferences. Unapproved logo concepts are kept outside the shipping app.
+### Resources and uploading
+
+`features/UploadPanel.jsx` is a separate, compact view within the library. Selecting Add materials replaces the resource browser instead of appending a form above it. The Resources button returns to the semester/subject/category browser. Counts, search, filters and existing document cards are not mounted underneath the upload form. The default form fits one viewport, using a split layout on desktop and two-column metadata on phones; its optional description opens in place.
+
+`node tests/resources-upload-check.mjs` verifies aligned controls, removed bento decoration, upload containment at seven sizes, description and metadata persistence, local saving, Resources navigation and dark mode. Backend endpoints and payload field names are unchanged.

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-28T08:57:35.340957+00:00",
+  "generatedAt": "2026-10-28T09:39:28.210627+00:00",
   "title": "Design System: StudyMitra",
   "extensions": {
     "colorMeta": {
@@ -70,8 +70,8 @@
       },
       {
         "name": "glass-depth",
-        "value": "0 14px 34px #294e8921",
-        "purpose": "Floating shell panels; dark uses 0 16px 38px #030b1850."
+        "value": "0 8px 24px #294e8914",
+        "purpose": "Softer glass-panel depth; dark uses 0 8px 24px #030b1838. Workspace overflow preserves the shadow edges."
       }
     ],
     "motion": [
@@ -125,10 +125,6 @@
         "value": "1050px"
       },
       {
-        "name": "toolbar-stack-max",
-        "value": "900px"
-      },
-      {
         "name": "mobile-max",
         "value": "650px"
       },
@@ -151,6 +147,10 @@
       {
         "name": "spacious-desktop-min-height",
         "value": "761px"
+      },
+      {
+        "name": "toolbar-stack-max",
+        "value": "1100px"
       }
     ],
     "brandAssets": {
@@ -190,7 +190,7 @@
       "kind": "nav",
       "description": "Centered 70dvh expanded navigation; focused rail uses compact automatic height.",
       "html": "<nav class=\"nav-demo\" aria-label=\"Workspace\"><button aria-current=\"page\">Study space</button><button>My library</button></nav>",
-      "css": ".nav-demo{font-family:'Manrope Variable',sans-serif;color:var(--text,#172b50);background:linear-gradient(135deg,var(--glass-highlight,rgba(255,255,255,.44)),transparent 65%),var(--glass,rgba(244,250,255,.28));border:1px solid var(--glass-edge,rgba(255,255,255,.74));box-shadow:inset 0 1px 0 #ffffff70,var(--glass-depth,0 14px 34px #294e8921);backdrop-filter:blur(24px) saturate(140%);width:196px;padding:26px 14px;height:70dvh;max-height:70dvh;align-self:center;border-radius:30px;display:grid;gap:6px}.nav-demo button{font:700 13px Manrope,sans-serif;color:var(--muted,#425b7b);border:0;background:none;border-radius:14px;min-height:44px;padding:12px;text-align:left;cursor:pointer;transition:transform .18s}.nav-demo button[aria-current]{color:var(--accent,#315dec);background:var(--selected,#e8efff);box-shadow:inset 0 1px 0 #ffffff80,0 3px 9px #23477608}.nav-demo button:hover{background:var(--selected,#e8efff);transform:translateX(2px)}.nav-demo button:focus-visible{outline:3px solid #739af5;outline-offset:3px}@media(prefers-reduced-motion:reduce){.nav-demo button{transition:none;transform:none}}",
+      "css": ".nav-demo{font-family:'Manrope Variable',sans-serif;color:var(--text,#172b50);background:linear-gradient(135deg,var(--glass-highlight,rgba(255,255,255,.44)),transparent 65%),var(--glass,rgba(244,250,255,.28));border:1px solid var(--glass-edge,rgba(255,255,255,.74));box-shadow:inset 0 1px 0 #ffffff70,var(--glass-depth,0 8px 24px #294e8914);backdrop-filter:blur(24px) saturate(140%);width:196px;padding:26px 14px;height:70dvh;max-height:70dvh;align-self:center;border-radius:30px;display:grid;gap:6px}.nav-demo button{font:700 13px Manrope,sans-serif;color:var(--muted,#425b7b);border:0;background:none;border-radius:14px;min-height:44px;padding:12px;text-align:left;cursor:pointer;transition:transform .18s}.nav-demo button[aria-current]{color:var(--accent,#315dec);background:var(--selected,#e8efff);box-shadow:inset 0 1px 0 #ffffff80,0 3px 9px #23477608}.nav-demo button:hover{background:var(--selected,#e8efff);transform:translateX(2px)}.nav-demo button:focus-visible{outline:3px solid #739af5;outline-offset:3px}@media(prefers-reduced-motion:reduce){.nav-demo button{transition:none;transform:none}}",
       "refersTo": "workspace-navigation"
     },
     {
@@ -198,7 +198,7 @@
       "kind": "nav",
       "description": "One measured glass indicator slides behind the selected button; static example shows its selected position.",
       "html": "<div class=\"mode-demo\" role=\"group\" aria-label=\"Answer mode\"><span class=\"selection\" aria-hidden=\"true\"></span><button aria-pressed=\"true\">Explain</button><button aria-pressed=\"false\">Summarize</button><button aria-pressed=\"false\">Quiz</button></div>",
-      "css": ".mode-demo{position:relative;display:flex;gap:2px;padding:4px;border-radius:24px;background:var(--glass,rgba(244,250,255,.28));border:1px solid var(--glass-edge,#fff);backdrop-filter:blur(22px) saturate(165%)}.mode-demo .selection{position:absolute;left:4px;top:4px;bottom:4px;width:64px;border-radius:22px;background:linear-gradient(135deg,rgba(255,255,255,.72),rgba(233,243,255,.32));border:1px solid rgba(255,255,255,.82);box-shadow:inset 0 1px 1px #fff,0 3px 10px #31538a12;transition:transform .34s cubic-bezier(.22,1,.36,1),width .34s cubic-bezier(.22,1,.36,1)}.mode-demo button{position:relative;font:700 11px Manrope,sans-serif;padding:10px 8px;border:0;border-radius:20px;background:none;color:var(--muted,#425b7b);cursor:pointer}.mode-demo button[aria-pressed=true]{color:var(--accent,#315dec)}.mode-demo button:hover{color:var(--accent,#315dec);background:#ffffff1f}.mode-demo button:focus-visible{outline:3px solid #739af5;outline-offset:3px}:host-context([data-theme=dark]) .selection{background:linear-gradient(135deg,rgba(160,197,255,.22),rgba(144,181,242,.08));border-color:rgba(189,216,255,.32);box-shadow:inset 0 1px 1px #ffffff45,0 4px 12px #040c2526}@media(prefers-reduced-motion:reduce){.mode-demo .selection{transition:none}}",
+      "css": ".mode-demo{position:relative;display:flex;height:44px;min-height:44px;align-items:center;gap:2px;padding:3px;border-radius:24px;background:var(--glass,rgba(244,250,255,.28));border:1px solid var(--glass-edge,#fff);backdrop-filter:blur(22px) saturate(165%)}.mode-demo .selection{position:absolute;left:4px;top:3px;bottom:3px;width:64px;border-radius:22px;background:linear-gradient(135deg,rgba(255,255,255,.72),rgba(233,243,255,.32));border:1px solid rgba(255,255,255,.82);box-shadow:inset 0 1px 1px #fff,0 3px 10px #31538a12;transition:transform .34s cubic-bezier(.22,1,.36,1),width .34s cubic-bezier(.22,1,.36,1)}.mode-demo button{position:relative;font:700 11px Manrope,sans-serif;height:36px;min-height:36px;padding:8px 9px;border:0;border-radius:20px;background:none;color:var(--muted,#425b7b);cursor:pointer}.mode-demo button[aria-pressed=true]{color:var(--accent,#315dec)}.mode-demo button:hover{color:var(--accent,#315dec);background:#ffffff1f}.mode-demo button:focus-visible{outline:3px solid #739af5;outline-offset:3px}:host-context([data-theme=dark]) .selection{background:linear-gradient(135deg,rgba(160,197,255,.22),rgba(144,181,242,.08));border-color:rgba(189,216,255,.32);box-shadow:inset 0 1px 1px #ffffff45,0 4px 12px #040c2526}@media(prefers-reduced-motion:reduce){.mode-demo .selection{transition:none}}",
       "refersTo": "study-modes"
     },
     {
@@ -220,12 +220,19 @@
       "kind": "custom",
       "description": "Independent focus pill and theme circle flank a centered heading; branding sits separately on the backdrop.",
       "html": "<header class=\"masthead-demo\"><button class=\"focus\" aria-pressed=\"false\">Focus mode</button><div><h1>Big questions. Clear answers.</h1><p>Your notes, untangled.</p></div><button class=\"theme\" aria-label=\"Switch theme\">◐</button></header>",
-      "css": ".masthead-demo{font-family:Manrope,sans-serif;display:grid;grid-template-columns:minmax(145px,1fr) auto minmax(44px,1fr);align-items:center;gap:16px;height:76px;color:var(--text,#172b50)}.masthead-demo div{text-align:center}.masthead-demo h1{font-size:28px;line-height:1.3;letter-spacing:-.035em;margin:0}.masthead-demo p{font-size:12px;line-height:1.5;margin:6px 0 0;color:var(--muted,#425b7b)}.masthead-demo button{font:650 12px Manrope,sans-serif;background:linear-gradient(135deg,var(--glass-highlight,#ffffff70),transparent 65%),var(--glass,rgba(244,250,255,.28));border:1px solid var(--glass-edge,#ffffffbd);color:inherit;backdrop-filter:blur(24px) saturate(140%);cursor:pointer}.masthead-demo .focus{justify-self:start;min-height:42px;padding:10px 14px;border-radius:24px}.masthead-demo .theme{justify-self:end;width:43px;height:43px;border-radius:50%}.masthead-demo button:hover{background-color:var(--glass-highlight,#ffffff70);transform:translateY(-1px)}.masthead-demo button:focus-visible{outline:3px solid #739af5;outline-offset:3px}"
+      "css": ".masthead-demo{font-family:Manrope,sans-serif;display:grid;width:min(100%,1040px);margin-inline:auto;grid-template-columns:176px minmax(0,1fr) 176px;align-items:center;gap:20px;height:76px;color:var(--text,#172b50)}.masthead-demo div{text-align:center}.masthead-demo h1{font-size:28px;line-height:1.3;letter-spacing:-.035em;margin:0}.masthead-demo p{font-size:12px;line-height:1.5;margin:6px 0 0;color:var(--muted,#425b7b)}.masthead-demo button{font:650 12px Manrope,sans-serif;background:linear-gradient(135deg,var(--glass-highlight,#ffffff70),transparent 65%),var(--glass,rgba(244,250,255,.28));border:1px solid var(--glass-edge,#ffffffbd);color:inherit;backdrop-filter:blur(24px) saturate(140%);cursor:pointer}.masthead-demo .focus{justify-self:end;min-height:42px;padding:10px 14px;border-radius:24px}.masthead-demo .theme{justify-self:start;width:42px;height:42px;border-radius:50%}.masthead-demo button:hover{background-color:var(--glass-highlight,#ffffff70);transform:translateY(-1px)}.masthead-demo button:focus-visible{outline:3px solid #739af5;outline-offset:3px}"
+    },
+    {
+      "name": "Dedicated upload",
+      "kind": "custom",
+      "description": "Upload-only panel: dropzone left, two-column metadata right, optional description; resource browser is absent.",
+      "html": "<section class=\"upload-demo\"><div class=\"upload-split\"><button class=\"drop\">Choose a document<br><small>PDF, Markdown, TXT · Up to 50 MB</small></button><div><div class=\"fields\"><label>Title<input placeholder=\"Document title\"></label><label>Subject<input placeholder=\"Subject\"></label><label>Semester<select><option>Not specified</option></select></label><label>Document type<select><option>Notes</option></select></label></div><details><summary>Add a description (optional)</summary><textarea aria-label=\"Description\"></textarea></details></div></div><footer>Files stay in this browser.</footer></section>",
+      "css": ".upload-demo{font:12px/1.5 Manrope,sans-serif;max-width:1080px;padding:24px;border-radius:20px;background:color-mix(in srgb,var(--surface,#fff) 67%,transparent);backdrop-filter:blur(20px);color:var(--text,#172b50)}.upload-split{display:grid;grid-template-columns:minmax(220px,.85fr) minmax(0,1.5fr);gap:24px}.drop{min-height:248px;padding:25px 20px;border:1px dashed #96afe6;border-radius:10px;background:var(--surface-2,#edf3ff);color:var(--accent,#315dec);cursor:pointer}.drop:hover{background:var(--selected,#e8efff);border-color:var(--accent,#315dec)}.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.fields label{display:flex;flex-direction:column;gap:7px;font-weight:700}.fields input,.fields select,.upload-demo textarea{min-width:0;padding:9px 11px;border:1px solid var(--line,#dfe7f4);border-radius:8px;background:var(--bg,#f3f6fc);color:inherit;font:12px Manrope,sans-serif}.upload-demo details{margin-top:14px;border-top:1px solid var(--line,#dfe7f4);padding-top:10px}.upload-demo summary{cursor:pointer}.upload-demo footer{margin-top:18px;border-top:1px solid var(--line,#dfe7f4);padding-top:14px;color:var(--muted,#425b7b)}.upload-demo :focus-visible{outline:3px solid #739af5;outline-offset:3px}@media(max-width:650px){.upload-demo{padding:16px}.upload-split{grid-template-columns:minmax(0,1fr);gap:14px}.drop{min-height:86px;padding:12px}.fields{gap:12px}}"
     }
   ],
   "narrative": {
     "northStar": "Blue-hour study desk",
-    "overview": "Blue-hour study desk: floating translucent navigation centers vertically, expanded to 70dvh while focus retains a compact rail. Existing Manrope branding and Phosphor BookOpen sit separately on the gradient backdrop. Independent focus and theme controls flank the centered full heading; no long topbar. Taller desktop starter tiles accompany the anchored expandable composer. A single measured glass indicator selects modes in both themes. Compact mobile and short-height layouts remain; offline truth stays visible in the composer and uploads remain in the library.",
+    "overview": "Blue-hour study desk: floating translucent navigation centers vertically, expanded to 70dvh while focus retains a compact rail. The approved cropped branding asset sit separately on the gradient backdrop. Independent focus and theme controls flank the centered full heading; no long topbar. Taller desktop starter tiles accompany the anchored expandable composer. A single measured glass indicator selects modes in both themes. Compact mobile and short-height layouts remain; offline truth stays visible in the composer and uploads remain in the library. The masthead controls sit close to the centered heading, modes and filters match in height, and transparent scrollbar tracks preserve the continuous canvas. Upload is a dedicated compact form with a Resources return control, split dropzone/metadata and optional description disclosure.",
     "keyCharacteristics": [
       "Five-to-six-color blue family gradient",
       "Quiet surfaces with strong ink and fine borders",
