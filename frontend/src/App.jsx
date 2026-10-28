@@ -1,3 +1,5 @@
+import ThemeProfile from "./components/ThemeProfile";
+import { useControlAlignment } from "./lib/controlAlignment";
 import Brand from "./components/Brand";
 import StudyModes from "./components/StudyModes";
 import Navigation from "./components/Navigation";
@@ -65,6 +67,8 @@ export default function App() {
     [drag, setDrag] = useState(false),
     [reindexing, setReindexing] = useState(null);
   const [historyOpen, setHistoryOpen] = useState(false);
+  const workspaceRef = useRef(null);
+  useControlAlignment(workspaceRef, page);
   const fileInput = useRef(),
     controller = useRef(),
     bottom = useRef(),
@@ -432,7 +436,7 @@ export default function App() {
           setHistoryOpen,
         }}
       />
-      <div className="workspace">
+      <div className="workspace" ref={workspaceRef}>
         <header className="masthead">
           <button
             className={"focus-toggle glass-panel " + (focus ? "enabled" : "")}
@@ -467,22 +471,14 @@ export default function App() {
                   : "Your notes, untangled. Your next “ohhh, got it”, right here."}
             </p>
           </div>
-          <button
-            className="theme-control glass-panel"
-            aria-label={
-              theme === "light" ? "Switch to dark mode" : "Switch to light mode"
-            }
-            title={
-              theme === "light" ? "Switch to dark mode" : "Switch to light mode"
-            }
-            onClick={() =>
+          <ThemeProfile
+            theme={theme}
+            toggleTheme={() =>
               transitionWorkspace(() =>
                 setTheme((v) => (v === "light" ? "dark" : "light")),
               )
             }
-          >
-            {theme === "light" ? <Moon size={21} /> : <Sun size={21} />}
-          </button>
+          />
         </header>
         <main
           id="main"

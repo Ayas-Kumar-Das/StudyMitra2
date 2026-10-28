@@ -1,4 +1,73 @@
-import {Sparkle,GraduationCap,ListBullets,Scales,Exam,Lightning} from '@phosphor-icons/react';
-export const modes=[['explain','Explain',Sparkle,'Make it click','Break down a tricky concept, minus the brain fog.','Explain this concept step by step'],['exam_answer','Exam prep',GraduationCap,'Ace the answer','Turn your notes into a structured exam answer.','Write an exam answer about this topic'],['summarize','Summarize',ListBullets,'Less text. More clarity.','Pull the big ideas out of a mountain of notes.','Summarize the key concepts in my documents'],['compare','Compare',Scales,'Connect the dots','Put two ideas side by side and spot the difference.','Compare the main concepts across my sources'],['find_pyqs','Find PYQs',Exam,'Meet your next exam','Find previous-year questions in your resources.','Find previous-year questions on this topic'],['quiz','Quiz me',Lightning,'Brain, meet challenge.','Check what stuck. Find what needs another look.','Quiz me on the key concepts in my documents']];
-export const types=['lecture_notes','textbook','research_paper','pyq','other'];
-export const typeLabel=s=>({lecture_notes:'Lecture notes',textbook:'Textbook',research_paper:'Research paper',pyq:'Previous-year questions',other:'Other'})[s]||s;
+import {
+  Sparkle,
+  GraduationCap,
+  ListBullets,
+  Scales,
+  Exam,
+  Lightning,
+} from "@phosphor-icons/react";
+export const modes = [
+  [
+    "explain",
+    "Explain",
+    Sparkle,
+    "Make it click",
+    "Break down a tricky concept, minus the brain fog.",
+    "Explain this concept step by step",
+  ],
+  [
+    "exam_answer",
+    "Exam Prep",
+    GraduationCap,
+    "Ace the answer",
+    "Turn your notes into a structured exam answer.",
+    "Write an exam answer about this topic",
+  ],
+  [
+    "summarize",
+    "Summarize",
+    ListBullets,
+    "Less text. More clarity.",
+    "Pull the big ideas out of a mountain of notes.",
+    "Summarize the key concepts in my documents",
+  ],
+  [
+    "compare",
+    "Compare",
+    Scales,
+    "Connect the dots",
+    "Put two ideas side by side and spot the difference.",
+    "Compare the main concepts across my sources",
+  ],
+  [
+    "find_pyqs",
+    "Find PYQs",
+    Exam,
+    "Meet your next exam",
+    "Find previous-year questions in your resources.",
+    "Find previous-year questions on this topic",
+  ],
+  [
+    "quiz",
+    "Quiz me",
+    Lightning,
+    "Brain, meet challenge.",
+    "Check what stuck. Find what needs another look.",
+    "Quiz me on the key concepts in my documents",
+  ],
+];
+export const types = [
+  "lecture_notes",
+  "textbook",
+  "research_paper",
+  "pyq",
+  "other",
+];
+export const typeLabel = (s) =>
+  ({
+    lecture_notes: "Lecture notes",
+    textbook: "Textbook",
+    research_paper: "Research paper",
+    pyq: "Previous-year questions",
+    other: "Other",
+  })[s] || s;

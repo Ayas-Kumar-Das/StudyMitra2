@@ -40,7 +40,7 @@ await page.route("**/api/**", (route) => {
 });
 await page.goto("http://127.0.0.1:3000");
 await page.locator(".composer-foot .status-dot.online").waitFor();
-await page.getByRole("button", { name: "Exam prep", exact: true }).click();
+await page.getByRole("button", { name: "Exam Prep", exact: true }).click();
 await page.getByRole("combobox", { name: "Filter by semester" }).click();
 await page.getByRole("option", { name: "Semester 3", exact: true }).click();
 await page

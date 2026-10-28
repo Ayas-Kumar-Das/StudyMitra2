@@ -84,3 +84,8 @@ The workspace check uses isolated, explicitly mocked backend fixtures. It verifi
 `features/UploadPanel.jsx` is a separate, compact view within the library. Selecting Add materials replaces the resource browser instead of appending a form above it. The Resources button returns to the semester/subject/category browser. Counts, search, filters and existing document cards are not mounted underneath the upload form. The default form fits one viewport, using a split layout on desktop and two-column metadata on phones; its optional description opens in place.
 
 `node tests/resources-upload-check.mjs` verifies aligned controls, removed bento decoration, upload containment at seven sizes, description and metadata persistence, local saving, Resources navigation and dark mode. Backend endpoints and payload field names are unchanged.
+### Aligned tools and local profile
+
+`lib/controlAlignment.js` observes the workspace controls and anchors Focus to Explain's left edge, while the shared theme/profile pill matches the document-type filter's right edge and width. The study mode strip caps at 680px (740px on wide desktops), leaving at least 32px between it and the filters. Tablet layouts move the heading beneath the controls to avoid overlaps.
+
+`components/ThemeProfile.jsx` offers separate accessible theme/profile actions inside one glass pill. Profile display names are saved only in this browser under `sm-profile-name`; no account or backend API is introduced. Run `node tests/control-alignment-check.mjs` to verify measured alignment, profile persistence, themes, focus and mobile containment.
