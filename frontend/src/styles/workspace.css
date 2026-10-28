@@ -1,16 +1,22 @@
 /* Viewport-owned workspace. Shared controls/content remain in app.css. */
 :root {
-  --glass: rgba(249, 252, 255, 0.74);
-  --glass-edge: rgba(255, 255, 255, 0.9);
-  --glass-depth: 0 12px 36px #2b4f8b0d;
+  --muted: #425b7b;
+  --glass: rgba(244, 250, 255, 0.28);
+  --glass-highlight: rgba(255, 255, 255, 0.44);
+  --glass-card: rgba(249, 252, 255, 0.34);
+  --glass-edge: rgba(255, 255, 255, 0.74);
+  --glass-depth: 0 14px 34px #294e8921;
   --nav-width: 224px;
   --shell-gap: 18px;
   --shell-inset: 16px;
 }
 [data-theme="dark"] {
-  --glass: rgba(24, 38, 62, 0.78);
-  --glass-edge: rgba(158, 192, 242, 0.16);
-  --glass-depth: 0 14px 38px #030b1826;
+  --muted: #afc2df;
+  --glass: rgba(21, 38, 64, 0.32);
+  --glass-highlight: rgba(130, 176, 241, 0.12);
+  --glass-card: rgba(26, 46, 76, 0.4);
+  --glass-edge: rgba(181, 211, 255, 0.25);
+  --glass-depth: 0 16px 38px #030b1850;
 }
 html,
 body,
@@ -30,19 +36,35 @@ body {
   padding: var(--shell-inset);
   overflow: hidden;
   background:
-    radial-gradient(ellipse at 0 10%, #cadfff55, transparent 48%),
-    radial-gradient(ellipse at 100% 100%, #dbe8ff66, transparent 55%), var(--bg);
+    radial-gradient(
+      ellipse 65% 66% at -8% 46%,
+      #6d9febb0,
+      #b1d1fa75 42%,
+      transparent 74%
+    ),
+    radial-gradient(ellipse 58% 45% at 69% -12%, #90b6f791, transparent 78%),
+    radial-gradient(ellipse 60% 50% at 92% 68%, #88c1eda0, transparent 76%),
+    var(--bg);
   transition:
     grid-template-columns 0.35s cubic-bezier(0.16, 1, 0.3, 1),
     background 0.3s ease;
 }
 [data-theme="dark"] .app-shell {
   background:
-    radial-gradient(ellipse at 0 10%, #23427140, transparent 48%),
-    radial-gradient(ellipse at 100% 100%, #1e36663d, transparent 55%), var(--bg);
+    radial-gradient(
+      ellipse 65% 66% at -8% 46%,
+      #366bb196,
+      #203f7070 42%,
+      transparent 74%
+    ),
+    radial-gradient(ellipse 58% 45% at 69% -12%, #28549b8a, transparent 78%),
+    radial-gradient(ellipse 60% 50% at 92% 68%, #286a9d75, transparent 76%),
+    var(--bg);
 }
 .glass-panel {
-  background: var(--glass);
+  background:
+    linear-gradient(135deg, var(--glass-highlight), transparent 65%),
+    var(--glass);
   border: 1px solid var(--glass-edge);
   box-shadow:
     inset 0 1px 0 #ffffff70,
@@ -62,7 +84,7 @@ body {
   height: auto;
   max-height: calc(100dvh - 32px);
   min-height: 0;
-  align-self: start;
+  align-self: center;
   border-radius: 30px;
   padding: 20px 14px;
   display: flex;
@@ -288,8 +310,11 @@ body {
   width: auto;
   border: 1px solid var(--glass-edge);
   border-radius: 24px;
-  background: var(--glass);
-  backdrop-filter: blur(18px) saturate(130%);
+  background:
+    linear-gradient(135deg, var(--glass-highlight), transparent 75%),
+    var(--glass);
+  backdrop-filter: blur(22px) saturate(165%);
+  -webkit-backdrop-filter: blur(22px) saturate(165%);
   box-shadow:
     inset 0 1px 0 #ffffff80,
     0 4px 14px #23477605;
@@ -445,6 +470,15 @@ body {
   min-height: 0;
 }
 .tool-card {
+  background:
+    linear-gradient(135deg, var(--glass-highlight), transparent 75%),
+    var(--glass-card);
+  border-color: var(--glass-edge);
+  box-shadow:
+    inset 0 1px 0 #ffffff60,
+    0 8px 22px #244b8110;
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
   padding: 15px 17px;
   min-height: 0;
   border-radius: 16px;
@@ -488,8 +522,12 @@ body {
 .composer {
   padding: 12px 15px 10px;
   border-radius: 18px;
-  background: var(--surface);
-  box-shadow: 0 5px 24px #24437406;
+  background: color-mix(in srgb, var(--surface) 62%, transparent);
+  backdrop-filter: blur(22px) saturate(145%);
+  -webkit-backdrop-filter: blur(22px) saturate(145%);
+  box-shadow:
+    inset 0 1px 0 #ffffff70,
+    0 8px 26px #2443740d;
   min-width: 0;
 }
 .composer textarea {
@@ -885,6 +923,86 @@ body {
     transform: scale(1);
   }
 }
+[data-theme="dark"] .tool-card {
+  box-shadow:
+    inset 0 1px 0 #ffffff15,
+    0 10px 25px #0002;
+}
+.tool-card:hover {
+  background:
+    linear-gradient(135deg, var(--glass-highlight), transparent),
+    var(--glass-card);
+  box-shadow:
+    inset 0 1px 0 #ffffff90,
+    0 12px 28px #244b8121;
+  transform: translateY(-2px);
+}
+@media (min-width: 651px) and (min-height: 761px) {
+  .chat-main {
+    gap: 18px;
+  }
+  .page-heading {
+    padding: 8px 0 5px;
+  }
+  .page-heading h1 {
+    font-size: 30px;
+    line-height: 1.35;
+  }
+  .page-heading p {
+    font-size: 13px;
+    line-height: 1.6;
+    margin-top: 8px;
+  }
+  .welcome {
+    max-width: 1280px;
+    gap: 22px;
+    padding: 8px 0;
+  }
+  .welcome-top h2 {
+    font-size: 26px;
+    line-height: 1.35;
+  }
+  .welcome-top p {
+    font-size: 13px;
+    margin-top: 7px;
+  }
+  .bento {
+    height: clamp(248px, 34dvh, 350px);
+    gap: 18px;
+  }
+  .tool-cards {
+    gap: 16px;
+  }
+  .tool-card {
+    padding: 21px 23px;
+  }
+  .tool-icon {
+    width: 33px;
+    height: 33px;
+    margin-bottom: 13px;
+  }
+  .tool-card h3 {
+    font-size: 15px;
+    margin-bottom: 7px;
+    line-height: 1.4;
+  }
+  .tool-card p {
+    font-size: 12px;
+    line-height: 1.65;
+    max-width: 34ch;
+  }
+  .start-card {
+    padding: 25px;
+  }
+  .start-card h3 {
+    font-size: 26px;
+    line-height: 1.35;
+  }
+  .start-card p {
+    font-size: 12px;
+    line-height: 1.7;
+  }
+}
 @media (min-width: 1700px) {
   .app-shell {
     --nav-width: 238px;
@@ -919,7 +1037,7 @@ body {
     max-width: 180px;
   }
   .bento {
-    height: clamp(220px, 30dvh, 310px);
+    height: clamp(265px, 35dvh, 360px);
   }
   .tool-card {
     padding: 18px 22px;

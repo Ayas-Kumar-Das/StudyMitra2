@@ -9,7 +9,7 @@ colors:
   surface-2: "#edf3ff"
   sidebar: "#f8faff"
   text: "#172b50"
-  muted: "#62718a"
+  muted: "#425b7b"
   line: "#dfe7f4"
   selected: "#e8efff"
   blue-1: "#1d3ea4"
@@ -23,7 +23,7 @@ colors:
   dark-surface-2: "#1c2c47"
   dark-sidebar: "#111d31"
   dark-text: "#e8efff"
-  dark-muted: "#a5b5d0"
+  dark-muted: "#afc2df"
   dark-line: "#2a3b57"
   dark-accent: "#8aabff"
   dark-accent-hover: "#a2bcff"
@@ -37,10 +37,14 @@ colors:
   focus-ring: "#739af5"
   danger: "#b53549"
   dark-error: "#ffadbc"
-  glass: "rgba(249, 252, 255, 0.74)"
-  glass-edge: "rgba(255, 255, 255, 0.9)"
-  dark-glass: "rgba(24, 38, 62, 0.78)"
-  dark-glass-edge: "rgba(158, 192, 242, 0.16)"
+  glass: "rgba(244, 250, 255, 0.28)"
+  glass-highlight: "rgba(255, 255, 255, 0.44)"
+  glass-card: "rgba(249, 252, 255, 0.34)"
+  dark-glass-highlight: "rgba(130, 176, 241, 0.12)"
+  dark-glass-card: "rgba(26, 46, 76, 0.4)"
+  glass-edge: "rgba(255, 255, 255, 0.74)"
+  dark-glass: "rgba(21, 38, 64, 0.32)"
+  dark-glass-edge: "rgba(181, 211, 255, 0.25)"
 typography:
   headline:
     fontFamily: "'Manrope Variable', sans-serif"
@@ -154,7 +158,7 @@ Dark theme substitutes the dark-prefixed semantic colors using the root `data-th
 
 **Display and Body Font:** Manrope Variable, with sans-serif fallback. There is no separate decorative display family.
 
-The rounded humanist letterforms carry friendliness; heavy, tightly spaced headings provide structure. Use the frontmatter roles as representative observed styles, not a claim of a universal type scale.
+The rounded humanist letterforms carry friendliness; heavy, tightly spaced headings provide structure. Use the frontmatter roles as representative observed styles, not a claim of a universal type scale. Spacious desktop headings and welcome copy follow the layout conditions below; compact and short-height overrides remain intact.
 
 - **Headline:** page heading; (29px) on wide screens, (25px) by default, (24px) below 1250px, (23px) below 900px, and (21px) on mobile before short-height compaction.
 - **Title:** section headings; the welcome title is (25px) on desktop and (22px) on mobile.
@@ -163,11 +167,11 @@ The rounded humanist letterforms carry friendliness; heavy, tightly spaced headi
 
 ## Layout
 
-The workspace owns the viewport (100dvh); document, body and root do not scroll. A two-column grid places floating navigation beside the workspace. Default navigation width is (224px), with shell-inset and shell-gap from the tokens. Navigation sizes to content with a viewport cap. The workspace uses a (46px) topbar row and flexible content row separated by (16px). Focus sits on the left of this thin bar; connection/theme actions sit on the right. There is no topbar breadcrumb.
+The workspace owns the viewport (100dvh); document, body and root do not scroll. A two-column grid places floating navigation beside the workspace. Default navigation width is (224px), with shell-inset and shell-gap from the tokens. Navigation sizes to content with a viewport cap and centers vertically within the desktop shell, in both expanded and focus-collapsed states. The workspace uses a (46px) topbar row and flexible content row separated by (16px). Focus sits on the left of this thin bar; connection/theme actions sit on the right. There is no topbar breadcrumb.
 
 Chat uses four rows: heading, tools, flexible welcome/conversation region, composer. Modes and filters share the desktop row. Modes cap at (680px); filters stay compact. The toolbar can wrap below (1250px), returns to one compact row below (1050px), and stacks modes above filters below (900px). The composer anchors at the grid bottom. Conversation alone scrolls, with contained overscroll and a stable scrollbar gutter. Welcome can scroll independently when necessary. Library content owns its vertical scrolling region.
 
-Welcome caps at (1260px). Its upload/tool grid uses a (0.9:1.4) ratio and `clamp(190px, 28dvh, 285px)` height. Library grids use three columns. At (1700px) and above navigation becomes (238px), gap (24px), inset (20px), topbar (48px), and modes cap at (810px). At (1250px) and below navigation becomes (200px), gap/inset (14px), and library grids use two columns. At (1050px) and below navigation becomes a (72px) icon rail with accessible names and a history shortcut.
+Welcome normally caps at (1260px). Its upload/tool grid uses a (0.9:1.4) ratio. At desktop widths (651px+) and heights (761px+), the spacious base uses a (30px) page heading with (1.35) line height, supporting text (13px) with (8px) top margin, and (18px) chat row gap. Welcome caps at (1280px), uses (26px) heading, (13px) supporting text and (22px) gap; the starter grid uses `clamp(248px, 34dvh, 350px)`. Tool cards use (21px 23px) padding, (15px) titles and (12px) descriptions. Subsequent width-specific rules remain authoritative: at (1700px+) the grid becomes `clamp(265px, 35dvh, 360px)`, page heading (29px), welcome heading (25px), gap (20px) and tool padding (18px 22px); at (1250px) and below the compact rules retain smaller headings, gaps and cards. Mobile and short-height compaction still apply. Library grids use three columns. At (1700px) and above navigation becomes (238px), gap (24px), inset (20px), topbar (48px), and modes cap at (810px). At (1250px) and below navigation becomes (200px), gap/inset (14px), and library grids use two columns. At (1050px) and below navigation becomes a (72px) icon rail with accessible names and a history shortcut.
 
 At (650px) and below the shell uses (10px) side insets and reserves `77px + env(safe-area-inset-bottom)` underneath content. Navigation becomes a centered bottom pill, (54px) high, (10px) above the safe area. Topbar becomes (42px) with (12px) workspace gap. Library grids become one column. A compact horizontal upload card sits above the two-column tool grid without the paper stack. Conversation padding becomes (13px 11px); user messages may use (88%) width. Keep the bottom navigation clear of the anchored composer.
 
@@ -175,9 +179,9 @@ Short-height layouts compact welcome and composer: desktop thresholds are (760px
 
 ## Elevation & Depth
 
-Floating navigation and topbar use translucent glass, a glass-edge border, inset highlight and diffuse depth. Glass backdrop blur is (24px) with saturation (140%); modes use (18px)/(130%). Theme-specific glass preserves the blue palette. Content depth otherwise comes primarily from surface tone and fine borders. Shadows support interaction and small overlays rather than making every card float. A shared shadow variable exists in the stylesheet, but current components use their own subtle shadows.
+Floating navigation and topbar use translucent glass, a glass-edge border, inset highlight and diffuse depth. Glass backdrop blur is (24px) with saturation (140%); modes use (22px)/(165%). Visible blue radial backdrop fields show through the translucent panels. Diagonal glass-highlight reflection layers cross navigation, topbar, modes and starter tool cards; tool cards use glass-card fill with (20px)/(150%) blur/saturation. Composer uses a (62%) surface mix over transparency with (22px)/(145%) blur/saturation. Theme-specific glass preserves the blue palette; muted text is deliberately darker in light theme and lighter in dark theme for readability. Content depth otherwise comes primarily from surface tone and fine borders. Shadows support interaction and small overlays rather than making every card float. A shared shadow variable exists in the stylesheet, but current components use their own subtle shadows.
 
-- Composer at rest: `0 5px 24px #24437406`; focused: `0 5px 25px #315dec12`.
+- Composer at rest: `inset 0 1px 0 #ffffff70, 0 8px 26px #2443740d`; focused: `0 5px 25px #315dec12`.
 - Primary action hover: `0 5px 15px #315dec25`.
 - Toast: `0 8px 32px #10203a25`.
 - Dialog backdrop: `#10234066`.
@@ -198,7 +202,7 @@ Keyboard focus uses a (3px) focus-ring outline offset by (3px). Preserve accessi
 
 ### Cards / Containers
 
-Tool cards have document-radius corners, a line border, surface fill and (15px 17px) desktop padding. Hover changes the border and surface tone; the corner arrow moves (2px, -2px). Document cards use the frontmatter component token and offer distinct preview, index and delete controls. Do not turn metadata tags into actions.
+Tool cards have document-radius corners, a glass-edge border, reflected translucent glass-card fill, and responsive padding described in Layout. Hover lifts the card (2px), strengthens the reflection and shadow, and moves the corner arrow (2px, -2px). Document cards use the frontmatter component token and offer distinct preview, index and delete controls. Do not turn metadata tags into actions.
 
 ### Inputs / Fields
 

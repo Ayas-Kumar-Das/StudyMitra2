@@ -152,6 +152,14 @@ for (const [width, height, name] of [
   await page.setViewportSize({ width, height });
   await capture(name);
   const box = await bounds();
+  if (width > 650) {
+    const sidebar = await page.locator(".sidebar").boundingBox();
+    assert.ok(
+      Math.abs(sidebar.y + sidebar.height / 2 - height / 2) < 2,
+      `${name}: sidebar must float at vertical center`,
+    );
+  }
+
   assert.equal(box.pageWidth, width, `${name}: horizontal page overflow`);
   assert.equal(box.pageHeight, height, `${name}: vertical page overflow`);
   assert.ok(box.composer.bottom < height, `${name}: composer below viewport`);
